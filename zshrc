@@ -51,17 +51,21 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump zsh-autosuggestions)
+plugins=(git tmux autojump zsh-autosuggestions)
+
+# tmux plugin
+# ZSH_TMUX_AUTOSTART=false
+# ZSH_TMUX_AUTOCONNECT=false
 
 source $ZSH/oh-my-zsh.sh
-
-# User configuration
-# disable <C-s>
-stty -ixon
 
 # zsh-autosuggestions plugin
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+
+# User configuration
+# disable <C-s>
+stty -ixon
 
 # export MANPATH="/usr/local/man:$MANPATH"
 # nvm

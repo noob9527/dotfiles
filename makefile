@@ -42,6 +42,8 @@ zsh-config:
 
 tmux-install: 
 	sudo apt install tmux
+	sudo apt install ruby
+	sudo gem install tmuxinator
 
 tmux-config: 
 	ln -fs "$$(pwd)/tmux.conf" ~/.tmux.conf

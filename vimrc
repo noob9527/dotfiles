@@ -19,28 +19,28 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " auto close tree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" set ignore
-let NERDTreeIgnore=['\~$']
-" don't show hint
-let NERDTreeMinimalUI=1
+let NERDTreeIgnore=['\~$']  " set ignore
+let NERDTreeShowHidden=1    " show hidden files
+let NERDTreeMinimalUI=1     " don't show hint
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "~",
-    \ "Staged"    : "+",
-    \ "Untracked" : "*",
-    \ "Renamed"   : "»",
-    \ "Unmerged"  : "=",
-    \ "Deleted"   : "-",
-    \ "Dirty"     : "x",
-    \ "Clean"     : "ø",
-    \ "Unknown"   : "?"
-    \ }
+            \ "Modified"  : "~",
+            \ "Staged"    : "+",
+            \ "Untracked" : "*",
+            \ "Renamed"   : "»",
+            \ "Unmerged"  : "=",
+            \ "Deleted"   : "-",
+            \ "Dirty"     : "x",
+            \ "Clean"     : "ø",
+            \ "Unknown"   : "?"
+            \ }
 
 " Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-commentary'
 nmap <BS> gcc
 vmap <BS> gc
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-repeat'
 
 Plugin 'scrooloose/syntastic'
@@ -48,29 +48,34 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 2
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint'
 
-" Plugin 'Chiel92/vim-autoformat'
+Plugin 'Chiel92/vim-autoformat'
+" let g:autoformat_verbosemode=1
+noremap <C-i> :Autoformat<CR>
+
+" Plugin 'Raimondi/delimitMate'
+Plugin 'jiangmiao/auto-pairs'
 
 Plugin 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_match_window='top,order:ttb,min:1,max:10,results:10'	" window position
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip				" ignore files
+let g:ctrlp_match_window='top,order:ttb,min:1,max:10,results:10'    " window position
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip                " ignore files
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 " ignore files in .gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
+    " Use Ag over Grep
+    set grepprg=ag\ --nogroup\ --nocolor
 
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+    " ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 0
 endif
 
 Plugin 'easymotion/vim-easymotion'
@@ -88,7 +93,7 @@ nnoremap <Leader>ud :GundoToggle<CR>
 
 Plugin 'mileszs/ack.vim'
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+    let g:ackprg = 'ag --vimgrep'
 endif
 cnoreabbrev Ack Ack!
 " Plugin 'vim-scripts/nerdtree-ack'
@@ -106,7 +111,7 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'majutsushi/tagbar'
 nmap <F3> :TagbarToggle<CR>
-let tagbar_width=32 
+let tagbar_width=32
 
 " Plugin 'benmills/vimux'
 Plugin 'christoomey/vim-tmux-navigator'
@@ -123,6 +128,7 @@ nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 " Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'iamcco/markdown-preview.vim'
 " Plugin 'iamcco/mathjax-support-for-mkdp'
+Plugin 'pangloss/vim-javascript'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'airblade/vim-gitgutter'
@@ -156,8 +162,8 @@ set undofile
 syntax on
 colorscheme molokai
 " set t_Co=256
-" let g:solarized_termtrans=1                                                   
-" let g:solarized_termcolors=256                                                 
+" let g:solarized_termtrans=1
+" let g:solarized_termcolors=256
 
 " hightlight cursor
 highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
@@ -167,12 +173,26 @@ autocmd WinLeave * set nocursorline nocursorcolumn
 
 " enable mouse
 if has('mouse')
-	set mouse=nv
+    set mouse=nv
 endif
 
 set history=200
-set nrformats=			" treat number as decimal
-set clipboard=unnamedplus   	" Yanks go on clipboard instead
+set nrformats=          " treat number as decimal
+set clipboard=unnamedplus       " Yanks go on clipboard instead
+
+" open split window
+set splitright
+set splitbelow
+
+" format
+set formatoptions-=o         " Do not insert the current comment leader after hitting 'o' or 'O' in Normal mode.
+set formatoptions-=r         " Do not automatically insert a comment leader after an enter
+set formatoptions-=t         " Do not auto-wrap text using textwidth (does not apply to comments)
+
+set tabstop=4               " set this width of a tab
+set softtabstop=4           " set the number of columns for a tab
+set shiftwidth=4            " set the indent width
+set expandtab               " expand tab to spaces
 
 set scrolloff=7
 set nowrap
@@ -181,6 +201,12 @@ set number
 set hlsearch
 set incsearch
 
+if has("autocmd")
+    autocmd FileType make setlocal noet
+    autocmd FileType javascript setlocal ts=4 sts=4 sw=4 et
+endif
+
+" key mapping
 " leader
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
@@ -229,5 +255,4 @@ cmap w!! w !sudo tee % > /dev/null
 " move cursor like readline
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
-
 
