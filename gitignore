@@ -1,1 +1,10 @@
+# editor,ide
+.idea
+.vscode
 *.swp
+*.swo
+
+# node
+node_modules
+npm-debug.log
+

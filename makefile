@@ -15,6 +15,7 @@ node-install:
 npm-install:
 	npm install cnpm -g
 	cnpm install eslint -g 
+	cnpm install babel-eslint -g 
 
 vim-install:
 	sudo apt remove vim vim-runtime gvim vim-tiny vim-common
@@ -44,6 +45,7 @@ tmux-install:
 	sudo apt install tmux
 	sudo apt install ruby
 	sudo gem install tmuxinator
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 tmux-config: 
 	ln -fs "$$(pwd)/tmux.conf" ~/.tmux.conf

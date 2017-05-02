@@ -56,7 +56,7 @@ let g:syntastic_javascript_eslint_exec = 'eslint'
 
 Plugin 'Chiel92/vim-autoformat'
 " let g:autoformat_verbosemode=1
-noremap <C-i> :Autoformat<CR>
+noremap <F5> :Autoformat<CR>
 
 " Plugin 'Raimondi/delimitMate'
 Plugin 'jiangmiao/auto-pairs'
@@ -99,14 +99,14 @@ cnoreabbrev Ack Ack!
 " Plugin 'vim-scripts/nerdtree-ack'
 
 Plugin 'dyng/ctrlsf.vim'
-nmap     <C-F>f <Plug>CtrlSFPrompt
-vmap     <C-F>f <Plug>CtrlSFVwordPath
-vmap     <C-F>F <Plug>CtrlSFVwordExec
-nmap     <C-F>n <Plug>CtrlSFCwordPath
-nmap     <C-F>p <Plug>CtrlSFPwordPath
-nnoremap <C-F>o :CtrlSFOpen<CR>
-nnoremap <C-F>t :CtrlSFToggle<CR>
-inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+nmap     <C-f>f <Plug>CtrlSFPrompt
+vmap     <C-f>f <Plug>CtrlSFVwordPath
+vmap     <C-f>F <Plug>CtrlSFVwordExec
+nmap     <C-f>n <Plug>CtrlSFCwordPath
+nmap     <C-f>p <Plug>CtrlSFPwordPath
+nnoremap <C-f>o :CtrlSFOpen<CR>
+nnoremap <C-f>t :CtrlSFToggle<CR>
+inoremap <C-f>t <Esc>:CtrlSFToggle<CR>
 
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'majutsushi/tagbar'
@@ -204,6 +204,25 @@ set incsearch
 if has("autocmd")
     autocmd FileType make setlocal noet
     autocmd FileType javascript setlocal ts=4 sts=4 sw=4 et
+endif
+
+" fix confuse brace issue
+" A massively simplified take on https://github.com/chreekat/vim-paren-crosshairs
+func! s:matchparen_cursorcolumn_setup()
+  augroup matchparen_cursorcolumn
+    autocmd!
+    autocmd CursorMoved * if get(w:, "paren_hl_on", 0) | set cursorcolumn | else | set nocursorcolumn | endif
+    autocmd InsertEnter * set nocursorcolumn
+  augroup END
+endf
+if !&cursorcolumn
+  augroup matchparen_cursorcolumn_setup
+    autocmd!
+    " - Add the event _only_ if matchparen is enabled.
+    " - Event must be added _after_ matchparen loaded (so we can react to w:paren_hl_on).
+    autocmd CursorMoved * if exists("#matchparen#CursorMoved") | call <sid>matchparen_cursorcolumn_setup() | endif
+          \ | autocmd! matchparen_cursorcolumn_setup
+  augroup END
 endif
 
 " key mapping
