@@ -39,8 +39,11 @@ let g:NERDTreeIndicatorMapCustom = {
 Plugin 'tpope/vim-commentary'
 nmap <BS> gcc
 vmap <BS> gc
+Plugin 'tpope/vim-fugitive'
+set diffopt+=vertical
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-sleuth'
+let g:sleuth_automatic = 0 " desable auto detect, manually run cmd :Sleuth
 Plugin 'tpope/vim-repeat'
 
 Plugin 'scrooloose/syntastic'
@@ -56,13 +59,15 @@ let g:syntastic_javascript_eslint_exec = 'eslint'
 
 Plugin 'Chiel92/vim-autoformat'
 " let g:autoformat_verbosemode=1
-noremap <F5> :Autoformat<CR>
+" let b:formatters_javascript = ['jsbeautify_javascript', 'eslint']
+noremap <A-i> :Autoformat<CR>
 
 " Plugin 'Raimondi/delimitMate'
 Plugin 'jiangmiao/auto-pairs'
+let g:AutoPairsShortcutToggle = ''
 
 Plugin 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_match_window='top,order:ttb,min:1,max:10,results:10'    " window position
+let g:ctrlp_match_window='bottom,order:ttb,min:1,max:10,results:10'    " window position
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip                " ignore files
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 " ignore files in .gitignore
@@ -77,19 +82,6 @@ if executable('ag')
     " ag is fast enough that CtrlP doesn't need to cache
     let g:ctrlp_use_caching = 0
 endif
-
-Plugin 'easymotion/vim-easymotion'
-let g:EasyMotion_smartcase = 1
-
-Plugin 'mattn/emmet-vim'
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
-
-Plugin 'sjl/gundo.vim'
-if has('python3')
-    let g:gundo_prefer_python3 = 1
-endif
-nnoremap <Leader>ud :GundoToggle<CR>
 
 Plugin 'mileszs/ack.vim'
 if executable('ag')
@@ -108,9 +100,23 @@ nnoremap <C-f>o :CtrlSFOpen<CR>
 nnoremap <C-f>t :CtrlSFToggle<CR>
 inoremap <C-f>t <Esc>:CtrlSFToggle<CR>
 
+
+Plugin 'easymotion/vim-easymotion'
+let g:EasyMotion_smartcase = 1
+
+Plugin 'mattn/emmet-vim'
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+
+Plugin 'sjl/gundo.vim'
+if has('python3')
+    let g:gundo_prefer_python3 = 1
+endif
+nnoremap <F3> :GundoToggle<CR>
+
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'majutsushi/tagbar'
-nmap <F3> :TagbarToggle<CR>
+nmap <F5> :TagbarToggle<CR>
 let tagbar_width=32
 
 " Plugin 'benmills/vimux'
@@ -209,21 +215,38 @@ endif
 " fix confuse brace issue
 " A massively simplified take on https://github.com/chreekat/vim-paren-crosshairs
 func! s:matchparen_cursorcolumn_setup()
-  augroup matchparen_cursorcolumn
-    autocmd!
-    autocmd CursorMoved * if get(w:, "paren_hl_on", 0) | set cursorcolumn | else | set nocursorcolumn | endif
-    autocmd InsertEnter * set nocursorcolumn
-  augroup END
+    augroup matchparen_cursorcolumn
+        autocmd!
+        autocmd CursorMoved * if get(w:, "paren_hl_on", 0) | set cursorcolumn | else | set nocursorcolumn | endif
+        autocmd InsertEnter * set nocursorcolumn
+    augroup END
 endf
 if !&cursorcolumn
-  augroup matchparen_cursorcolumn_setup
-    autocmd!
-    " - Add the event _only_ if matchparen is enabled.
-    " - Event must be added _after_ matchparen loaded (so we can react to w:paren_hl_on).
-    autocmd CursorMoved * if exists("#matchparen#CursorMoved") | call <sid>matchparen_cursorcolumn_setup() | endif
-          \ | autocmd! matchparen_cursorcolumn_setup
-  augroup END
+    augroup matchparen_cursorcolumn_setup
+        autocmd!
+        " - Add the event _only_ if matchparen is enabled.
+        " - Event must be added _after_ matchparen loaded (so we can react to w:paren_hl_on).
+        autocmd CursorMoved * if exists("#matchparen#CursorMoved") | call <sid>matchparen_cursorcolumn_setup() | endif
+                    \ | autocmd! matchparen_cursorcolumn_setup
+    augroup END
 endif
+
+set timeoutlen=1000 ttimeoutlen=0
+" fix alt key-mapping
+for i in range(char2nr('a'), char2nr('z'))
+    let i = nr2char(i)
+    exec "set <M-".i.">=\<Esc>".i
+    exec "imap \<Esc>".i." <M-".i.">"
+endfor
+for i in range(char2nr('0'), char2nr('9'))
+    let i = nr2char(i)
+    exec "set <M-".i.">=\<Esc>".i
+    exec "imap \<Esc>".i." <M-".i.">"
+endfor
+" set <A-a>=a
+map <A-a> :echo "A-a received"<CR>
+" set <S-Down>=[1;2B
+" map <S-Down> :echo "S-down received"<CR>
 
 " key mapping
 " leader
@@ -261,7 +284,7 @@ nnoremap <silent> g* g*zz
 
 " temporary disable hlsearch
 " nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
-nnoremap <silent> <leader>l :<C-u>nohlsearch<CR>
+nnoremap <silent> <A-l> :<C-u>nohlsearch<CR>
 
 " switch buffer
 " noremap <silent> <Left> :bp<CR>

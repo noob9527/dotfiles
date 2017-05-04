@@ -60,7 +60,7 @@ plugins=(git tmux autojump zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
 # zsh-autosuggestions plugin
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 # User configuration

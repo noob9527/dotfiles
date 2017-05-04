@@ -7,4 +7,10 @@
 # node
 node_modules
 npm-debug.log
+bower_components/
 
+# gradle
+gradle
+.gradle
+gradlew
+gradlew.bat

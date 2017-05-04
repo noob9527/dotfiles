@@ -16,6 +16,7 @@ npm-install:
 	npm install cnpm -g
 	cnpm install eslint -g 
 	cnpm install babel-eslint -g 
+	cnpm install js-beautify -g 
 
 vim-install:
 	sudo apt remove vim vim-runtime gvim vim-tiny vim-common
@@ -49,5 +50,9 @@ tmux-install:
 
 tmux-config: 
 	ln -fs "$$(pwd)/tmux.conf" ~/.tmux.conf
+
+ssh-config:
+	ln -fs "$$(pwd)/.ssh/config" ~/.ssh/config
+
 
 .PHONY: all install update vim tmux plugin
