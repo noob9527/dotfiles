@@ -8,6 +8,8 @@
 - [x] undo
 - [x] detect tab width
 - [ ] format code
+- [ ] doc comment
+- [ ] code snippet
 - [x] global find && replace
 - [ ] nodejs
 - [ ] jsx

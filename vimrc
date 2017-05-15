@@ -10,6 +10,8 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'Valloric/YouCompleteMe'
 let g:ycm_min_num_of_chars_for_completion=1
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_complete_in_comments = 1
 
 Plugin 'scrooloose/nerdtree'
 " <F2> toggle explorer

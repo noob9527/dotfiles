@@ -32,6 +32,7 @@ vim-config:
 	ln -fs "$$(pwd)/vimrc" ~/.vimrc
 	mkdir ~/.vim/.undo_history
 	vim +PluginInstall +qall
+	ln -fs "$$(pwd)/tern-config" ~/.tern-config
 
 zsh-install:
 	sudo apt install zsh
