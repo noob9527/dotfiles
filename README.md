@@ -7,11 +7,11 @@
 - [x] emmet
 - [x] undo
 - [x] detect tab width
-- [ ] format code
-- [ ] doc comment
-- [ ] code snippet
+- [x] format code
+- [x] code snippet
 - [x] global find && replace
-- [ ] nodejs
+- [x] nodejs
+- [x] doc comment
 - [ ] jsx
 - [ ] buffer explorer?
 - [ ] zoom?

@@ -14,8 +14,8 @@ node-install:
 
 npm-install:
 	npm install cnpm -g
-	cnpm install eslint -g 
-	cnpm install babel-eslint -g 
+	cnpm install eslint babel-eslint -g 
+	cnpm install eslint-config-airbnb-base eslint-plugin-import -g
 	cnpm install js-beautify -g 
 
 vim-install:

@@ -12,6 +12,8 @@ Plugin 'Valloric/YouCompleteMe'
 let g:ycm_min_num_of_chars_for_completion=1
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_complete_in_comments = 1
+let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
+let g:ycm_key_list_previous_completion=['<Up>']     "use s-tab for UltiSnips
 
 Plugin 'scrooloose/nerdtree'
 " <F2> toggle explorer
@@ -61,8 +63,12 @@ let g:syntastic_javascript_eslint_exec = 'eslint'
 
 Plugin 'Chiel92/vim-autoformat'
 " let g:autoformat_verbosemode=1
-" let b:formatters_javascript = ['jsbeautify_javascript', 'eslint']
+let g:formatters_javascript = ['eslint_local']  " only try eslint format
 noremap <A-i> :Autoformat<CR>
+" Plugin 'sbdchd/neoformat'
+" let g:neoformat_verbose = 1
+" let g:neoformat_enabled_javascript = ['prettiereslint']
+" noremap <A-i> :Neoformat<CR>
 
 " Plugin 'Raimondi/delimitMate'
 Plugin 'jiangmiao/auto-pairs'
@@ -71,7 +77,7 @@ let g:AutoPairsShortcutToggle = ''
 Plugin 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_match_window='bottom,order:ttb,min:1,max:10,results:10'    " window position
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip                " ignore files
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 " ignore files in .gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 if executable('ag')
@@ -132,11 +138,25 @@ nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<s-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
+
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+
 " Plugin 'suan/vim-instant-markdown'
 " Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'iamcco/markdown-preview.vim'
 " Plugin 'iamcco/mathjax-support-for-mkdp'
 Plugin 'pangloss/vim-javascript'
+let g:javascript_plugin_jsdoc = 1
+Plugin 'moll/vim-node'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'airblade/vim-gitgutter'
@@ -245,8 +265,8 @@ for i in range(char2nr('0'), char2nr('9'))
     exec "set <M-".i.">=\<Esc>".i
     exec "imap \<Esc>".i." <M-".i.">"
 endfor
-" set <A-a>=a
 map <A-a> :echo "A-a received"<CR>
+" set <A-a>=a
 " set <S-Down>=[1;2B
 " map <S-Down> :echo "S-down received"<CR>
 
@@ -274,6 +294,17 @@ nnoremap gk k
 nnoremap j gj
 nnoremap gj j
 
+" location list
+nnoremap ]e :lnext<cr>
+nnoremap [e :lprevious<cr>
+" switch buffer
+nnoremap <silent> [b :bp<CR>
+nnoremap <silent> ]b :bn<CR>
+
+" switch buffer
+" noremap <silent> <Left> :bp<CR>
+" noremap <silent> <Right> :bn<CR>
+
 " Y Make Y behave like other capitals
 nnoremap Y  y$
 
@@ -288,10 +319,6 @@ nnoremap <silent> g* g*zz
 " nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 nnoremap <silent> <A-l> :<C-u>nohlsearch<CR>
 
-" switch buffer
-" noremap <silent> <Left> :bp<CR>
-" noremap <silent> <Right> :bn<CR>
-
 " xnoremap p pgvy
 
 " write with sudo
@@ -300,3 +327,25 @@ cmap w!! w !sudo tee % > /dev/null
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
+" generate doc comment template
+map <leader><BS> :call GenerateDOCComment()<cr>
+function! GenerateDOCComment()
+  let l    = line('.')
+  let i    = indent(l)
+  let pre  = repeat(' ',i)
+  let text = getline(l)
+  let params   = matchstr(text,'([^)]*)')
+  let paramPat = '\([$a-zA-Z_0-9]\+\)[, ]*\(.*\)'
+  echomsg params
+  let vars = []
+  let m    = ' '
+  let ml = matchlist(params,paramPat)
+  while ml!=[]
+    let [_,var;rest]= ml
+    let vars += [pre.' * @param '.var]
+    let ml = matchlist(rest,paramPat,0)
+  endwhile
+  let comment = [pre.'/**',pre.' * '] + vars + [pre.' */']
+  call append(l-1,comment)
+  call cursor(l+1,i+3)
+endfunction
