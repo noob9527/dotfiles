@@ -13,10 +13,10 @@ node-install:
 	nvm install node && nvm use node
 
 npm-install:
-	npm install cnpm -g
-	cnpm install eslint babel-eslint -g 
-	cnpm install eslint-config-airbnb-base eslint-plugin-import -g
-	cnpm install js-beautify -g 
+	npm install typescript -g
+	npm install eslint babel-eslint tslint -g
+	npm install eslint-config-airbnb-base eslint-plugin-import -g
+	npm install js-beautify typescript-formatter -g
 
 vim-install:
 	sudo apt remove vim vim-runtime gvim vim-tiny vim-common

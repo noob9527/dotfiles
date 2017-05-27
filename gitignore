@@ -6,8 +6,10 @@
 
 # node
 node_modules
+bower_components
 npm-debug.log
-bower_components/
+coverage
+
 
 # gradle
 gradle

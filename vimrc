@@ -16,7 +16,7 @@ let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 let g:ycm_key_list_previous_completion=['<Up>']     "use s-tab for UltiSnips
 
 Plugin 'scrooloose/nerdtree'
-" <F2> toggle explorer
+" <F4> toggle explorer
 map <F4> :NERDTreeToggle<CR>
 " auto open tree
 autocmd StdinReadPre * let s:std_in=1
@@ -26,6 +26,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let NERDTreeIgnore=['\~$']  " set ignore
 let NERDTreeShowHidden=1    " show hidden files
 let NERDTreeMinimalUI=1     " don't show hint
+let NERDTreeAutoDeleteBuffer=1  " auto delete buffer
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 let g:NERDTreeIndicatorMapCustom = {
             \ "Modified"  : "~",
@@ -47,7 +48,7 @@ Plugin 'tpope/vim-fugitive'
 set diffopt+=vertical
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-sleuth'
-let g:sleuth_automatic = 0 " desable auto detect, manually run cmd :Sleuth
+let g:sleuth_automatic = 0 " disable auto detect, manually run cmd :Sleuth
 Plugin 'tpope/vim-repeat'
 
 Plugin 'scrooloose/syntastic'
@@ -60,11 +61,18 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint'
+let g:syntastic_typescript_checkers = ['tslint', 'tsuquyomi']
+
+" disable java check cause it slowly
+" let g:loaded_syntastic_java_javac_checker = 1
+" let g:syntastic_mode_map = { 'passive_filetypes': ['java'] }
 
 Plugin 'Chiel92/vim-autoformat'
 " let g:autoformat_verbosemode=1
 let g:formatters_javascript = ['eslint_local']  " only try eslint format
 noremap <A-i> :Autoformat<CR>
+imap <A-i> <ESC> :Autoformat<CR>
+
 " Plugin 'sbdchd/neoformat'
 " let g:neoformat_verbose = 1
 " let g:neoformat_enabled_javascript = ['prettiereslint']
@@ -150,18 +158,28 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 
+Plugin 'airblade/vim-gitgutter'
+Plugin 'vim-airline/vim-airline'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'luochen1990/rainbow'
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+
+" language related plugins
+" markdown
 " Plugin 'suan/vim-instant-markdown'
 " Plugin 'JamshedVesuna/vim-markdown-preview'
-Plugin 'iamcco/markdown-preview.vim'
 " Plugin 'iamcco/mathjax-support-for-mkdp'
+Plugin 'iamcco/markdown-preview.vim'
+" javascript
 Plugin 'pangloss/vim-javascript'
 let g:javascript_plugin_jsdoc = 1
+" nodejs
 Plugin 'moll/vim-node'
-
-Plugin 'vim-airline/vim-airline'
-Plugin 'airblade/vim-gitgutter'
-
-Plugin 'flazz/vim-colorschemes'
+" typescript
+Plugin 'leafgarland/typescript-vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Quramy/tsuquyomi'
+let g:tsuquyomi_disable_quickfix = 1    " use syntastaic
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -182,12 +200,21 @@ filetype plugin indent on    " required
 runtime macros/matchit.vim
 " auto reload config
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
+" autocmd BufWritePost vimrc source $MYVIMRC
+
+" Backup
+set nowritebackup
+set nobackup
+set noswapfile
+" set directory=$HOME/.tmp/    " prepend(^=) $HOME/.tmp/ to default path; use full path as backup filename(//)
 
 " undo
-set undodir=~/.vim/.undo_history/
 set undofile
+set undodir=~/.vim/.undo_history/
 
 syntax on
+set synmaxcol=248
+
 colorscheme molokai
 " set t_Co=256
 " let g:solarized_termtrans=1
@@ -207,6 +234,7 @@ endif
 set history=200
 set nrformats=          " treat number as decimal
 set clipboard=unnamedplus       " Yanks go on clipboard instead
+set lazyredraw
 
 " open split window
 set splitright
@@ -229,29 +257,38 @@ set number
 set hlsearch
 set incsearch
 
+" show white space
+set list
+" set listchars=eol:¬
+set listchars=tab:»·
+set listchars+=trail:•
+set listchars+=extends:❯
+set listchars+=precedes:❮
+
 if has("autocmd")
     autocmd FileType make setlocal noet
     autocmd FileType javascript setlocal ts=4 sts=4 sw=4 et
 endif
 
-" fix confuse brace issue
+" fix confuse bracket issue
+let g:loaded_matchparen=1   " disable match parentheses
 " A massively simplified take on https://github.com/chreekat/vim-paren-crosshairs
-func! s:matchparen_cursorcolumn_setup()
-    augroup matchparen_cursorcolumn
-        autocmd!
-        autocmd CursorMoved * if get(w:, "paren_hl_on", 0) | set cursorcolumn | else | set nocursorcolumn | endif
-        autocmd InsertEnter * set nocursorcolumn
-    augroup END
-endf
-if !&cursorcolumn
-    augroup matchparen_cursorcolumn_setup
-        autocmd!
-        " - Add the event _only_ if matchparen is enabled.
-        " - Event must be added _after_ matchparen loaded (so we can react to w:paren_hl_on).
-        autocmd CursorMoved * if exists("#matchparen#CursorMoved") | call <sid>matchparen_cursorcolumn_setup() | endif
-                    \ | autocmd! matchparen_cursorcolumn_setup
-    augroup END
-endif
+" func! s:matchparen_cursorcolumn_setup()
+"     augroup matchparen_cursorcolumn
+"         autocmd!
+"         autocmd CursorMoved * if get(w:, "paren_hl_on", 0) | set cursorcolumn | else | set nocursorcolumn | endif
+"         autocmd InsertEnter * set nocursorcolumn
+"     augroup END
+" endf
+" if !&cursorcolumn
+"     augroup matchparen_cursorcolumn_setup
+"         autocmd!
+"         " - Add the event _only_ if matchparen is enabled.
+"         " - Event must be added _after_ matchparen loaded (so we can react to w:paren_hl_on).
+"         autocmd CursorMoved * if exists("#matchparen#CursorMoved") | call <sid>matchparen_cursorcolumn_setup() | endif
+"                     \ | autocmd! matchparen_cursorcolumn_setup
+"     augroup END
+" endif
 
 set timeoutlen=1000 ttimeoutlen=0
 " fix alt key-mapping
@@ -270,10 +307,20 @@ map <A-a> :echo "A-a received"<CR>
 " set <S-Down>=[1;2B
 " map <S-Down> :echo "S-down received"<CR>
 
+" switch between absolute/relative number
+set relativenumber number
+au FocusLost * :set norelativenumber number
+au FocusGained * :set relativenumber
+autocmd InsertEnter * :set norelativenumber number
+autocmd InsertLeave * :set relativenumber
+
 " key mapping
 " leader
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
+
+noremap H ^
+noremap L $
 
 " Speed up scrolling of the viewport slightly
 nnoremap <C-e> 3<C-e>
@@ -301,9 +348,10 @@ nnoremap [e :lprevious<cr>
 nnoremap <silent> [b :bp<CR>
 nnoremap <silent> ]b :bn<CR>
 
-" switch buffer
-" noremap <silent> <Left> :bp<CR>
-" noremap <silent> <Right> :bn<CR>
+" select all
+nnoremap <leader><C-a> ggVG
+" select block
+nnoremap <leader><C-b> V`}
 
 " Y Make Y behave like other capitals
 nnoremap Y  y$
@@ -326,26 +374,43 @@ cmap w!! w !sudo tee % > /dev/null
 " move cursor like readline
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
+cnoremap <M-b> <S-Left>
+cnoremap <M-f> <S-Right>
+
+" Zoom / Restore window.
+function! s:ZoomToggle() abort
+    if exists('t:zoomed') && t:zoomed
+        execute t:zoom_winrestcmd
+        let t:zoomed = 0
+    else
+        let t:zoom_winrestcmd = winrestcmd()
+        resize
+        vertical resize
+        let t:zoomed = 1
+    endif
+endfunction
+command! ZoomToggle call s:ZoomToggle()
+nnoremap <silent> <A-z> :ZoomToggle<CR>
 
 " generate doc comment template
 map <leader><BS> :call GenerateDOCComment()<cr>
 function! GenerateDOCComment()
-  let l    = line('.')
-  let i    = indent(l)
-  let pre  = repeat(' ',i)
-  let text = getline(l)
-  let params   = matchstr(text,'([^)]*)')
-  let paramPat = '\([$a-zA-Z_0-9]\+\)[, ]*\(.*\)'
-  echomsg params
-  let vars = []
-  let m    = ' '
-  let ml = matchlist(params,paramPat)
-  while ml!=[]
-    let [_,var;rest]= ml
-    let vars += [pre.' * @param '.var]
-    let ml = matchlist(rest,paramPat,0)
-  endwhile
-  let comment = [pre.'/**',pre.' * '] + vars + [pre.' */']
-  call append(l-1,comment)
-  call cursor(l+1,i+3)
+    let l    = line('.')
+    let i    = indent(l)
+    let pre  = repeat(' ',i)
+    let text = getline(l)
+    let params   = matchstr(text,'([^)]*)')
+    let paramPat = '\([$a-zA-Z_0-9]\+\)[, ]*\(.*\)'
+    echomsg params
+    let vars = []
+    let m    = ' '
+    let ml = matchlist(params,paramPat)
+    while ml!=[]
+        let [_,var;rest]= ml
+        let vars += [pre.' * @param '.var]
+        let ml = matchlist(rest,paramPat,0)
+    endwhile
+    let comment = [pre.'/**',pre.' * '] + vars + [pre.' */']
+    call append(l-1,comment)
+    call cursor(l+1,i+3)
 endfunction
