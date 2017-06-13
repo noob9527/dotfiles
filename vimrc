@@ -377,6 +377,12 @@ cnoremap <C-e> <End>
 cnoremap <M-b> <S-Left>
 cnoremap <M-f> <S-Right>
 
+" typescript tsuquyomi
+autocmd FileType typescript nmap <buffer> <Leader>td <Plug>(TsuquyomiDefinition)
+autocmd FileType typescript nmap <buffer> <Leader>tf <Plug>(TsuquyomiQuickFix)
+autocmd FileType typescript nmap <buffer> <Leader>te <Plug>(TsuquyomiRenameSymbol)
+autocmd FileType typescript nmap <buffer> <Leader>tE <Plug>(TsuquyomiRenameSymbolC)
+
 " Zoom / Restore window.
 function! s:ZoomToggle() abort
     if exists('t:zoomed') && t:zoomed
