@@ -13,7 +13,7 @@ let g:ycm_min_num_of_chars_for_completion=1
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_complete_in_comments = 1
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
-let g:ycm_key_list_previous_completion=['<Up>']     "use s-tab for UltiSnips
+let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
 
 Plugin 'scrooloose/nerdtree'
 " <F4> toggle explorer
@@ -149,7 +149,7 @@ nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 " Track the engine.
 Plugin 'SirVer/ultisnips'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " If you want :UltiSnipsEdit to split your window.
@@ -170,6 +170,11 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 " Plugin 'JamshedVesuna/vim-markdown-preview'
 " Plugin 'iamcco/mathjax-support-for-mkdp'
 Plugin 'iamcco/markdown-preview.vim'
+nmap <silent> <F8> <Plug>MarkdownPreview        " for normal mode
+imap <silent> <F8> <Plug>MarkdownPreview        " for insert mode
+nmap <silent> <F9> <Plug>StopMarkdownPreview    " for normal mode
+imap <silent> <F9> <Plug>StopMarkdownPreview    " for insert mode
+
 " javascript
 Plugin 'pangloss/vim-javascript'
 let g:javascript_plugin_jsdoc = 1
@@ -267,6 +272,7 @@ set listchars+=precedes:❮
 
 if has("autocmd")
     autocmd FileType make setlocal noet
+    autocmd FileType markdown,mkd setlocal wrap
     autocmd FileType javascript setlocal ts=4 sts=4 sw=4 et
 endif
 
