@@ -12,6 +12,6 @@
 - [x] global find && replace
 - [x] nodejs
 - [x] doc comment
-- [ ] jsx
+- [x] jsx
+- [x] zoom
 - [ ] buffer explorer?
-- [ ] zoom?

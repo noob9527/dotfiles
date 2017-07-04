@@ -68,8 +68,10 @@ let g:syntastic_typescript_checkers = ['tslint', 'tsuquyomi']
 " let g:syntastic_mode_map = { 'passive_filetypes': ['java'] }
 
 Plugin 'Chiel92/vim-autoformat'
-" let g:autoformat_verbosemode=1
+let g:autoformat_verbosemode=0
 let g:formatters_javascript = ['eslint_local']  " only try eslint format
+let g:formatters_jsx = ['eslint_local']  " only try eslint format
+let g:formatters_javascript_jsx = ['eslint_local']  " only try eslint format
 noremap <A-i> :Autoformat<CR>
 imap <A-i> <ESC> :Autoformat<CR>
 
@@ -122,7 +124,13 @@ let g:EasyMotion_smartcase = 1
 
 Plugin 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+let g:user_emmet_leader_key='<C-y>'
+let g:user_emmet_settings = {
+\  'javascript.jsx' : {
+\      'extends' : 'jsx',
+\  },
+\}
+autocmd FileType html,css,javascript,javascript.jsx EmmetInstall
 
 Plugin 'sjl/gundo.vim'
 if has('python3')
@@ -178,6 +186,9 @@ imap <silent> <F9> <Plug>StopMarkdownPreview    " for insert mode
 " javascript
 Plugin 'pangloss/vim-javascript'
 let g:javascript_plugin_jsdoc = 1
+" jsx
+Plugin 'mxw/vim-jsx'
+let g:jsx_ext_required = 0
 " nodejs
 Plugin 'moll/vim-node'
 " typescript
