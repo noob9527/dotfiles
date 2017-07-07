@@ -14,6 +14,11 @@ let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_complete_in_comments = 1
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
+" trigger html css omnifunc
+let g:ycm_semantic_triggers = {
+    \   'css': [ 're!^\s{4}', 're!:\s+'],
+    \   'html': [ '</' ],
+    \ }
 
 Plugin 'scrooloose/nerdtree'
 " <F4> toggle explorer
@@ -196,6 +201,10 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Quramy/tsuquyomi'
 let g:tsuquyomi_disable_quickfix = 1    " use syntastaic
+" style
+Plugin 'ap/vim-css-color'
+Plugin 'hail2u/vim-css3-syntax'
+" Plugin 'groenewege/vim-less'  " not work fine
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -326,8 +335,8 @@ map <A-a> :echo "A-a received"<CR>
 
 " switch between absolute/relative number
 set relativenumber number
-au FocusLost * :set norelativenumber number
-au FocusGained * :set relativenumber
+autocmd FocusLost * :set norelativenumber number
+autocmd FocusGained * :set relativenumber
 autocmd InsertEnter * :set norelativenumber number
 autocmd InsertLeave * :set relativenumber
 

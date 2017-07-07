@@ -14,4 +14,6 @@
 - [x] doc comment
 - [x] jsx
 - [x] zoom
+- [x] css
+- [ ] less
 - [ ] buffer explorer?

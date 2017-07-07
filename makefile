@@ -15,8 +15,12 @@ node-install:
 npm-install:
 	npm install typescript
 	npm install -g eslint babel-eslint tslint
-	npm install -g eslint-plugin-flowtype eslint-plugin-react eslint-plugin-jsx-a11y
-	npm install -g eslint-config-airbnb eslint-config-airbnb-base eslint-plugin-import
+	npm install -g \
+		eslint-plugin-flowtype \
+		eslint-plugin-react \
+		eslint-plugin-jsx-a11y \
+		eslint-plugin-import
+	npm install -g eslint-config-airbnb eslint-config-airbnb-base
 	npm install -g js-beautify typescript-formatter
 
 vim-install:
@@ -56,5 +60,7 @@ tmux-config:
 ssh-config:
 	ln -fs "$$(pwd)/.ssh/config" ~/.ssh/config
 
+android-env-install:
+	sudo apt-get install libz1 libncurses5 libbz2-1.0:i386 libstdc++6 libbz2-1.0
 
 .PHONY: all install update vim tmux plugin

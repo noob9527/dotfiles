@@ -72,7 +72,9 @@ stty -ixon
 export NVM_DIR="/home/xy/Application/NVM"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 # android sdk
-export PATH=${PATH}:~/Application/Android/android-sdk-linux/tools
+export ANDROID_HOME=~/Application/Android/sdk
+export PATH=${PATH}:$ANDROID_HOME/tools
+export PATH=${PATH}:$ANDROID_HOME/platform-tools
 # gradle
 export GRADLE_HOME=/usr/share/gradle
 export PATH=${PATH}:$GRADLE_HOME/bin
