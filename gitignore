@@ -1,6 +1,8 @@
+# OSX
+.DS_Store
+
 # editor,ide
 .idea
-.vscode
 *.swp
 *.swo
 
@@ -10,9 +12,5 @@ bower_components
 npm-debug.log
 coverage
 
-
 # gradle
-gradle
 .gradle
-gradlew
-gradlew.bat
