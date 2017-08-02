@@ -258,7 +258,7 @@ endif
 
 set history=200
 set nrformats=          " treat number as decimal
-set clipboard=unnamedplus       " Yanks go on clipboard instead
+set clipboard^=unnamed,unnamedplus       " Yanks go on clipboard instead
 set lazyredraw
 
 " open split window
