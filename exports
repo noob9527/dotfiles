@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Don't edit this file, if u need to customize something
+# create an exports_local file in your home directory
+
+# exports environment variables
+export EDITOR='vim'
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# android sdk
+export ANDROID_HOME=~/Application/Android/sdk
+export PATH=${PATH}:$ANDROID_HOME/tools
+export PATH=${PATH}:$ANDROID_HOME/platform-tools
+
+# gradle
+export GRADLE_HOME=/usr/share/gradle
+export PATH=${PATH}:$GRADLE_HOME/bin

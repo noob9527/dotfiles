@@ -41,6 +41,7 @@ zsh-install:
 
 zsh-config:
 	ln -fs "$$(dirname "$$(pwd)")/zshrc" ~/.zshrc
+	ln -fs "$$(dirname "$$(pwd)")/exports" ~/.exports
 
 tmux-install: 
 	brew install tmux

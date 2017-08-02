@@ -46,6 +46,7 @@ zsh-install:
 
 zsh-config: 
 	ln -fs "$$(dirname "$$(pwd)")/zshrc" ~/.zshrc
+	ln -fs "$$(dirname "$$(pwd)")/exports" ~/.exports
 
 tmux-install: 
 	sudo apt install tmux

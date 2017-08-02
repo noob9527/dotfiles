@@ -1,6 +1,6 @@
 # dotfiles
 
-### vim todo
+### vimrc
 - [x] git
 - [x] markdown
 - [x] autocomplete

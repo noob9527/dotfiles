@@ -67,27 +67,8 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 # disable <C-s>
 stty -ixon
 
-# export MANPATH="/usr/local/man:$MANPATH"
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-# android sdk
-export ANDROID_HOME=~/Application/Android/sdk
-export PATH=${PATH}:$ANDROID_HOME/tools
-export PATH=${PATH}:$ANDROID_HOME/platform-tools
-# gradle
-export GRADLE_HOME=/usr/share/gradle
-export PATH=${PATH}:$GRADLE_HOME/bin
-
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='vim'
-fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -101,3 +82,9 @@ fi
 # For a full list of active aliases, run `alias`.
 alias v="vim"
 alias tr="trans -sp"
+
+# environment variables
+for file in ~/.{exports,exports_local}; do
+    [ -r "$file" ] && source "$file"
+done
+unset file
