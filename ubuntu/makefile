@@ -61,4 +61,8 @@ ssh-config:
 android-env-install:
 	sudo apt-get install libz1 libncurses5 libbz2-1.0:i386 libstdc++6 libbz2-1.0
 
+chore:
+	# ideavim
+	ln -fs "$$(dirname "$$(pwd)")/ideavimrc" ~/.ideavimrc
+
 .PHONY: all install update vim tmux plugin

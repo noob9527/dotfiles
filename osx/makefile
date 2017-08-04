@@ -56,4 +56,8 @@ tmux-config:
 ssh-config:
 	ln -fs "$$(dirname "$$(pwd)")/.ssh/config" ~/.ssh/config
 
+chore:
+	# ideavim
+	ln -fs "$$(dirname "$$(pwd)")/ideavimrc" ~/.ideavimrc
+
 .PHONY: all install zsh-install zsh-config
