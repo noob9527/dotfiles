@@ -82,6 +82,12 @@ stty -ixon
 # For a full list of active aliases, run `alias`.
 alias v="vim"
 alias tr="trans -sp"
+alias op="open"
+
+# alternative to OSX open command
+if hash xdg-open 2>/dev/null; then
+    alias open="xdg-open &> /dev/null"
+fi
 
 # environment variables
 for file in ~/.{exports,exports_local}; do
