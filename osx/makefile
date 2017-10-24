@@ -7,15 +7,18 @@ node-install:
 	nvm install node && nvm use node
 
 npm-install:
-	npm install typescript
-	npm install -g eslint babel-eslint tslint
+	npm install -g typescript
+	npm install -g js-beautify typescript-formatter
 	npm install -g \
+		eslint \
+		babel-eslint \
+		tslint \
 		eslint-plugin-flowtype \
 		eslint-plugin-react \
 		eslint-plugin-jsx-a11y \
-		eslint-plugin-import
-	npm install -g eslint-config-airbnb eslint-config-airbnb-base
-	npm install -g js-beautify typescript-formatter
+		eslint-plugin-import \
+		eslint-config-airbnb-base \
+		eslint-config-airbnb \
 
 vim-install:
 	brew install vim \
