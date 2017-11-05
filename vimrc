@@ -329,9 +329,6 @@ for i in range(char2nr('0'), char2nr('9'))
     exec "imap \<Esc>".i." <M-".i.">"
 endfor
 map <A-a> :echo "A-a received"<CR>
-" set <A-a>=a
-" set <S-Down>=[1;2B
-" map <S-Down> :echo "S-down received"<CR>
 
 " switch between absolute/relative number
 set relativenumber number
@@ -446,3 +443,10 @@ function! GenerateDOCComment()
     call append(l-1,comment)
     call cursor(l+1,i+3)
 endfunction
+
+" bats(test utils for shellscript) syntax highlight
+autocmd BufRead,BufNewFile *.bats        set filetype=sh
+syn match batsTest              "\v\@test"
+syn keyword batsKeyword         run containedin=shExpr contained
+hi def link batsTest            Identifier
+hi def link batsKeyword         Keyword
