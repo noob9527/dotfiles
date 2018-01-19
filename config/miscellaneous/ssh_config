@@ -1,0 +1,2 @@
+# copy this file to $HOME/.ssh/config
+ServerAliveInterval 40

@@ -1,19 +1,22 @@
 # dotfiles
+> personal dotfiles to set up a new computer(so called instance)
 
-### vimrc
-- [x] git
-- [x] markdown
-- [x] autocomplete
-- [x] emmet
-- [x] undo
-- [x] detect tab width
-- [x] format code
-- [x] code snippet
-- [x] global find && replace
-- [x] nodejs
-- [x] doc comment
-- [x] jsx
-- [x] zoom
-- [x] css
-- [ ] less
-- [ ] buffer explorer?
+### prerequisites
+- python3 pip3
+- curl
+- apt-get or brew
+
+### targets(all the items are optional)
+- git
+- tools
+    - ag
+    - autojump
+    - powerline
+- node
+- vim
+- zsh
+- tmux
+- env
+- miscellaneous
+    - ideavim
+    - ssh

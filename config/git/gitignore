@@ -14,3 +14,8 @@ coverage
 
 # gradle
 .gradle
+
+# python
+__pycache__/
+*.py[cod]
+*$py.class

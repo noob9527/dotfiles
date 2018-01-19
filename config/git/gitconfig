@@ -13,9 +13,6 @@
 	tags = tag -l
 	branches = branch -a
 	remotes = remote -v
-[user]
-	email = 2061864@qq.com
-	name = xy
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore

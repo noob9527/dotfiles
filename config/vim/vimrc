@@ -284,8 +284,9 @@ set incsearch
 
 " show white space
 set list
-" set listchars=eol:¬
 set listchars=tab:»·
+" set listchars+=eol:¬
+" set listchars+=space:␣
 set listchars+=trail:•
 set listchars+=extends:❯
 set listchars+=precedes:❮
