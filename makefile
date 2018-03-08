@@ -1,3 +1,6 @@
+all:
+	./bin/dotfiles -c ./config/config.yml
+
 docker-build:
 	docker build -t dotfiles .
 
