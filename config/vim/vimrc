@@ -293,7 +293,7 @@ set listchars+=precedes:❮
 
 if has("autocmd")
     autocmd FileType make setlocal noet
-    autocmd FileType markdown,mkd setlocal wrap
+    autocmd FileType markdown,mkd setlocal wrap spell
     autocmd FileType javascript setlocal ts=4 sts=4 sw=4 et
 endif
 
@@ -376,9 +376,13 @@ nnoremap <silent> ]b :bn<CR>
 nnoremap <leader><C-a> ggVG
 " select block
 nnoremap <leader><C-b> V`}
+" guess the first candidate for spellling mistake
+nnoremap <leader>s 1z=
 
 " Y Make Y behave like other capitals
 nnoremap Y  y$
+" enable paste multi times
+xnoremap p pgvy
 
 " Keep search pattern at the center of the screen.
 nnoremap <silent> n nzz
@@ -390,8 +394,6 @@ nnoremap <silent> g* g*zz
 " temporary disable hlsearch
 " nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 nnoremap <silent> <A-l> :<C-u>nohlsearch<CR>
-
-" xnoremap p pgvy
 
 " write with sudo
 cmap w!! w !sudo tee % > /dev/null
