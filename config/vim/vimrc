@@ -126,6 +126,10 @@ inoremap <C-f>t <Esc>:CtrlSFToggle<CR>
 
 Plugin 'easymotion/vim-easymotion'
 let g:EasyMotion_smartcase = 1
+map m <Plug>(easymotion-prefix)
+" Move to line
+map mm <Plug>(easymotion-bd-jk)
+nmap mm <Plug>(easymotion-overwin-line)
 
 Plugin 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
