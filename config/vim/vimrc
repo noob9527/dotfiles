@@ -85,6 +85,13 @@ imap <A-i> <ESC> :Autoformat<CR>
 " let g:neoformat_enabled_javascript = ['prettiereslint']
 " noremap <A-i> :Neoformat<CR>
 
+" Plugin 'godlygeek/tabular'
+Plugin 'junegunn/vim-easy-align'
+" " Start interactive EasyAlign in visual mode (e.g. vipga)
+" xmap ga <Plug>(EasyAlign)
+" " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+" nmap ga <Plug>(EasyAlign)
+
 " Plugin 'Raimondi/delimitMate'
 Plugin 'jiangmiao/auto-pairs'
 let g:AutoPairsShortcutToggle = ''
@@ -127,9 +134,12 @@ inoremap <C-f>t <Esc>:CtrlSFToggle<CR>
 Plugin 'easymotion/vim-easymotion'
 let g:EasyMotion_smartcase = 1
 map m <Plug>(easymotion-prefix)
+" Move to char
+nmap ff <Plug>(easymotion-bd-f)
+nmap ms <Plug>(easymotion-bd-f)
+nmap mS <Plug>(easymotion-overwin-f2)
 " Move to line
 map mm <Plug>(easymotion-bd-jk)
-nmap mm <Plug>(easymotion-overwin-line)
 
 Plugin 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
@@ -399,19 +409,33 @@ nnoremap <silent> g* g*zz
 " nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 nnoremap <silent> <A-l> :<C-u>nohlsearch<CR>
 
+" begin cmap ---------------------------------
+
+" open help in a vertical split window rather than a horizontal one
+cabbrev h vert h
+cabbrev help vertical help
+
 " write with sudo
 cmap w!! w !sudo tee % > /dev/null
+
 " move cursor like readline
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <M-b> <S-Left>
 cnoremap <M-f> <S-Right>
 
+" end cmap -----------------------------------
+
 " typescript tsuquyomi
 autocmd FileType typescript nmap <buffer> <Leader>td <Plug>(TsuquyomiDefinition)
 autocmd FileType typescript nmap <buffer> <Leader>tf <Plug>(TsuquyomiQuickFix)
 autocmd FileType typescript nmap <buffer> <Leader>te <Plug>(TsuquyomiRenameSymbol)
 autocmd FileType typescript nmap <buffer> <Leader>tE <Plug>(TsuquyomiRenameSymbolC)
+
+" vim easy align
+xmap <leader>a<bar> :EasyAlign *<bar><CR>
+" xmap <leader>a= :EasyAlign *=<CR>
+" xmap <leader>a: :EasyAlign *:<CR>
 
 " Zoom / Restore window.
 function! s:ZoomToggle() abort
