@@ -1,3 +1,5 @@
+# you can comment the task which you do not want to execute
+
 tasks:
 #  - name: apt-update
 #    cmd: ["hash apt-get >/dev/null && sudo apt-get update"]
@@ -9,18 +11,18 @@ tasks:
     cmd: ["./node/setup.sh"]
   - name: vim
     cmd: ["./vim/setup.sh"]
-#  - name: bash
-#    cmd: ["./bash/setup.sh"]
+  - name: bash
+    cmd: ["./bash/setup.sh"]
   - name: zsh
     cmd: ["./zsh/setup.sh"]
   - name: tmux
     cmd: ["./tmux/setup.sh"]
   - name: env
     cmd: ["./env/setup.sh"]
-#  - name: docker
-#    cmd: ["./docker/setup.sh"]
   - name: miscellaneous
     cmd: ["./miscellaneous/setup.sh"]
+#  - name: docker
+#    cmd: ["./docker/setup.sh"]
 #  - name: android
 #    cmd: ["./android/setup.sh"]
 #    add this if you don't want symbol links

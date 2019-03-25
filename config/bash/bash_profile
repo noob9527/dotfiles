@@ -1,0 +1,4 @@
+for file in ~/.{exports,exports_local}; do
+    [ -r "$file" ] && source "$file"
+done
+unset file

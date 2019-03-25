@@ -135,11 +135,9 @@ Plugin 'easymotion/vim-easymotion'
 let g:EasyMotion_smartcase = 1
 map m <Plug>(easymotion-prefix)
 " Move to char
-nmap ff <Plug>(easymotion-bd-f)
 nmap ms <Plug>(easymotion-bd-f)
-nmap mS <Plug>(easymotion-overwin-f2)
 " Move to line
-map mm <Plug>(easymotion-bd-jk)
+" map mm <Plug>(easymotion-bd-jk)
 
 Plugin 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
@@ -346,11 +344,11 @@ endfor
 map <A-a> :echo "A-a received"<CR>
 
 " switch between absolute/relative number
-set relativenumber number
-autocmd FocusLost * :set norelativenumber number
-autocmd FocusGained * :set relativenumber
-autocmd InsertEnter * :set norelativenumber number
-autocmd InsertLeave * :set relativenumber
+" set relativenumber number
+" autocmd FocusLost * :set norelativenumber number
+" autocmd FocusGained * :set relativenumber
+" autocmd InsertEnter * :set norelativenumber number
+" autocmd InsertLeave * :set relativenumber
 
 " key mapping
 " leader
@@ -392,6 +390,8 @@ nnoremap <leader><C-a> ggVG
 nnoremap <leader><C-b> V`}
 " guess the first candidate for spellling mistake
 nnoremap <leader>s 1z=
+nnoremap <C-\> [s1z=$
+inoremap <C-\> <Esc>[s1z=A
 
 " Y Make Y behave like other capitals
 nnoremap Y  y$

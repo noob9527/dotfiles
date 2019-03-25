@@ -3,7 +3,7 @@
 # This file is copy from dotfiles
 # so you'd better not edit this file
 # if you need to customize something
-# create an exports_local file in your home directory
+# create an .exports_local file in your home directory
 
 # exports environment variables
 export EDITOR='vim'

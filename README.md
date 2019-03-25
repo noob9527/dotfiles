@@ -1,12 +1,17 @@
-# dotfiles
-> personal dotfiles to set up a new computer(so called instance)
+# Dotfiles
+> personal dotfiles to set up a new computer
 
-### prerequisites
+### Prerequisites
 - python3 pip3
 - curl
 - apt-get or brew
 
-### targets(all the items are optional)
+### Getting Started
+```bash
+./bin/dotfiles -c ./config/config.yml
+```
+
+### Configuration Tasks(all items are optional)
 - git
 - tools
     - ag
