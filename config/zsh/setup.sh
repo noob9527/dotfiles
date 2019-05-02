@@ -22,6 +22,19 @@ install_ohmyzsh() {
 	return 0
 }
 
+install_zsh_autosuggestions() {
+    local target='zsh-autosuggestions'
+    local target_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+
+    if [[ -d "$target_dir" ]]; then
+        colorful::default "$target has already been installed"
+        return 0
+    fi
+    colorful::primary "I am trying to install $target..."
+        git clone https://github.com/zsh-users/zsh-autosuggestions $target_dir
+    return 0
+}
+
 config() {
     colorful::primary "I am trying to configure zsh..."
     ln -s -i "$dir/zshrc" "$HOME/.zshrc" && \
@@ -35,7 +48,7 @@ main() {
     source "$parent_dir/utils.sh"
     source "$parent_dir/colorful.sh"
 
-    install && install_ohmyzsh && config
+    install && install_ohmyzsh && install_zsh_autosuggestions && config
 }
 
 main $@

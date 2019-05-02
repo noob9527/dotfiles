@@ -51,7 +51,7 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux autojump zsh-autosuggestions)
+plugins=(git tmux autojump zsh-autosuggestions kubectl)
 
 # tmux plugin
 # ZSH_TMUX_AUTOSTART=false
@@ -81,8 +81,11 @@ stty -ixon
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 alias v="vim"
-alias tr="trans -sp"
+# translate-shell
+# alias tr="trans -sp"
 alias op="open"
+# git list branches order by latest commit date
+alias glist_remote='for ref in $(git for-each-ref --sort=-committerdate --format="%(refname)" refs/heads/ refs/remotes ); do git log -n1 $ref --pretty=format:"%Cgreen%cr%Creset %C(yellow)%d%Creset %C(bold blue)<%an>%Creset%n" | cat ; done | awk '"'! a["'$0'"]++'"
 
 # alternative to OSX open command
 if hash xdg-open 2>/dev/null; then
@@ -94,3 +97,7 @@ for file in ~/.{exports,exports_local}; do
     [ -r "$file" ] && source "$file"
 done
 unset file
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

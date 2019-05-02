@@ -5,6 +5,9 @@
 # if you need to customize something
 # create an .exports_local file in your home directory
 
+# source custom shell functions
+source "$HOME/.functions.sh"
+
 # exports environment variables
 export EDITOR='vim'
 

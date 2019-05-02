@@ -5,29 +5,31 @@ tasks:
 #    cmd: ["hash apt-get >/dev/null && sudo apt-get update"]
   - name: git
     cmd: ["./git/setup.sh"]
+  - name: shadowsocks
+    cmd: ["./shadowsocks/setup.sh"]
   - name: tools
     cmd: ["./tools/setup.sh"]
+  - name: java
+    cmd: ["./java/setup.sh"]
   - name: node
     cmd: ["./node/setup.sh"]
   - name: vim
     cmd: ["./vim/setup.sh"]
+  - name: shells
+    cmd: ["./shells/setup.sh"]
   - name: bash
     cmd: ["./bash/setup.sh"]
   - name: zsh
     cmd: ["./zsh/setup.sh"]
   - name: tmux
     cmd: ["./tmux/setup.sh"]
-  - name: env
-    cmd: ["./env/setup.sh"]
   - name: miscellaneous
     cmd: ["./miscellaneous/setup.sh"]
-#  - name: docker
-#    cmd: ["./docker/setup.sh"]
-#  - name: android
-#    cmd: ["./android/setup.sh"]
-#    add this if you don't want symbol links
+  - name: docker
+    cmd: ["./docker/setup.sh"]
+  - name: k8s
+    cmd: ["./k8s/setup.sh"]
+#    add this if you don't want to dereference symbol link
 #  - name: restore_symlinks
 #    cmd: [".restore_symlinks"]
-#  - name: done
-#    cmd: ["echo I'm done"]
 

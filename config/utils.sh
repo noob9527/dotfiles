@@ -71,6 +71,7 @@ package_manager_install() {
     local pm=$2
 
     if [[ -n ${pm} ]]; then
+        # if use apt-get, add -y paramter
         if [[ pm = 'apt-get' ]]; then
             if confirm_install ${package} ${pm}; then
                 sudo ${pm} install ${package} -y
@@ -80,7 +81,7 @@ package_manager_install() {
             fi
         else
             if confirm_install ${package} ${pm}; then
-                sudo ${pm} install ${package} -y
+                sudo ${pm} install ${package}
                 return $?
             else
                 return 2

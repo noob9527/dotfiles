@@ -31,7 +31,7 @@ install() {
 
 install_global_package() {
     local pkgs=(
-        'js-beauty' \
+        'js-beautify' \
         'eslint' \
         'babel-eslint' \
 		'eslint-plugin-flowtype' \
@@ -53,7 +53,7 @@ install_global_package() {
     local cr=$(echo $'\n.')
     cr=${cr%.}
     confirm "$(colorful::primary "Are you going to install(global) following pacakges:${cr}$(to_multi_line ${pkgs[*]})${cr}")" \
-        $$ npm install -g ${pkgs[@]}
+        && npm install -g ${pkgs[@]}
 }
 
 main() {
