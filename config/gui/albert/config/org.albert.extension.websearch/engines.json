@@ -1,0 +1,98 @@
+[
+    {
+        "iconPath": "/home/xy/.config/albert/org.albert.extension.websearch/{974a59d5-c4a1-4dd0-91d7-e551cc4a509a}.",
+        "name": "淘宝搜索",
+        "trigger": "taobao",
+        "url": "http://s.taobao.com/search?q=%s"
+    },
+    {
+        "iconPath": "/home/xy/.config/albert/org.albert.extension.websearch/{a595a921-3131-4474-ab24-4b42a162c31b}.",
+        "name": "bing",
+        "trigger": "bing",
+        "url": "https://www.bing.com/dict/search?q=%s"
+    },
+    {
+        "iconPath": "/home/xy/.config/albert/org.albert.extension.websearch/{232ff486-5236-441b-8559-3622ee8ecfc7}.",
+        "name": "天猫",
+        "trigger": "tmall",
+        "url": "http://list.tmall.com/search_product.htm?q=%s&type=p&from=..pc_1_opensearch"
+    },
+    {
+        "iconPath": "/home/xy/.config/albert/org.albert.extension.websearch/{c0c1f709-ad65-43d9-b634-db226c8f5c51}.",
+        "name": "京东",
+        "trigger": "jd",
+        "url": "http://search.jd.com/Search?keyword=%s&enc=utf-8"
+    },
+    {
+        "iconPath": "/home/xy/.config/albert/org.albert.extension.websearch/{05a2cb4f-a23b-4b86-a343-7690aa21ab7d}.",
+        "name": "Stack Overflow",
+        "trigger": "so",
+        "url": "http://stackoverflow.com/search?q=%s"
+    },
+    {
+        "iconPath": "/home/xy/.config/albert/org.albert.extension.websearch/{ad200948-003e-4595-8755-6db25a092ac7}.",
+        "name": "npm",
+        "trigger": "npm",
+        "url": "https://www.npmjs.com/search?q=%s"
+    },
+    {
+        "iconPath": "/home/xy/.config/albert/org.albert.extension.websearch/{8748dad8-664a-4390-9111-6625c600a3b9}.",
+        "name": "MvnRepository",
+        "trigger": "mvn",
+        "url": "http://mvnrepository.com/search?q=%s&ref=opensearch"
+    },
+    {
+        "iconPath": "/home/xy/.config/albert/org.albert.extension.websearch/{37d7646c-3b21-40de-99a1-af861a99ed7d}.",
+        "name": "Mozilla 开发者网络",
+        "trigger": "mdn",
+        "url": "https://developer.mozilla.org/zh-CN/search?q=%s&w=3&qs=plugin"
+    },
+    {
+        "iconPath": "/home/xy/.config/albert/org.albert.extension.websearch/{6ebac64d-fddb-4358-9d78-de06abe7bccf}.",
+        "name": "linux command manual",
+        "trigger": "man",
+        "url": "http://wangchujiang.com/linux-command/list.html#!kw=%s"
+    },
+    {
+        "iconPath": "/home/xy/.config/albert/org.albert.extension.websearch/{98ac5bf1-1ad9-4ae4-b35b-41b5ff1ef95e}.",
+        "name": "Google",
+        "trigger": "gcn",
+        "url": "https://www.google.com/search?q=%s&lr=lang_zh-CN"
+    },
+    {
+        "iconPath": ":google",
+        "name": "Google",
+        "trigger": "gg ",
+        "url": "https://www.google.com/search?q=%s"
+    },
+    {
+        "iconPath": ":youtube",
+        "name": "Youtube",
+        "trigger": "yt ",
+        "url": "https://www.youtube.com/results?search_query=%s"
+    },
+    {
+        "iconPath": ":amazon",
+        "name": "Amazon",
+        "trigger": "ama ",
+        "url": "http://www.amazon.com/s/?field-keywords=%s"
+    },
+    {
+        "iconPath": ":github",
+        "name": "GitHub",
+        "trigger": "gh ",
+        "url": "https://github.com/search?utf8=✓&q=%s"
+    },
+    {
+        "iconPath": "/home/xy/.config/albert/org.albert.extension.websearch/{b6c2edf0-1193-4e4a-bca3-f7434d3a9def}.",
+        "name": "Cambridge Dictionary",
+        "trigger": "cam",
+        "url": "https://dictionary.cambridge.org/search/english/direct/?source=gadgets&q=%s"
+    },
+    {
+        "iconPath": "/home/xy/.config/albert/org.albert.extension.websearch/{64eb0199-b7bc-495e-9a07-efa8e218843e}.",
+        "name": "docker hub",
+        "trigger": "dh",
+        "url": "https://hub.docker.com/search?q=%s&type=image"
+    }
+]

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# This file is copy from dotfiles
+# so you'd better not edit this file
+# if you need to customize something
+# create an .exports_local file in your home directory
+
+# source custom shell functions
+source "$HOME/.functions.sh"
+
+# exports environment variables
+export EDITOR='vim'
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# pipenv
+export PIPENV_VENV_IN_PROJECT=true
+
+# android sdk
+#export ANDROID_HOME=~/Application/Android/sdk
+#export PATH=${PATH}:$ANDROID_HOME/tools
+#export PATH=${PATH}:$ANDROID_HOME/platform-tools

@@ -15,41 +15,59 @@ Update the configuration to specify which task should be run, finally, run the e
 ```
 
 ### Configuration Tasks(all items are supposed to be optional)
+#### essential
+- remap caps
 - git
-    1. install git
-    1. copy .gitconfig
-    1. link .gitignore
-    1. configure git user info globally
-- shadowsocks
-    1. install shadowsocks client(ss-qt5)
-- tools
-    1. install pip2
-    1. install pip3
-    1. install curl
-    1. install build\_essential
-    1. install cmake
-    1. install ag
-    1. install powerline
-    1. install reattach-to-user-namespace(OSX)
-    1. install autojump
-    1. install [translate-shell](https://github.com/soimort/translate-shell)
+  1. install git
+  1. copy .gitconfig
+  1. link .gitignore
+  1. configure git user info globally
+- curl
+- net-tools
+- build-essential
+- make
+- cmake
+
+#### proxy
+- shadowsocks client(ss-qt5)
+- proxychains
+
+#### programming
+- python
+  1. install pip2
+  1. install pip3
 - java
-    1. install jdk(default-jdk)
+  1. install jdk(default-jdk)
 - node
-    1. install nvm
-    1. install node via nvm
-    1. install common global package
+  1. install nvm
+  1. install node via nvm
+  1. install common global package
+
+#### container
+- docker
+    1. install docker-ce
+    1. copy daemon.json(to use alibaba mirror)
+    1. install docker-compose
+- k8s
+    1. install kubectl
+    1. install virtualbox virtualbox-ext-pack
+    1. install minikube
+
+#### terminal
+- shells
+    1. link .functions.sh file(it then will be sourced by .exports file)
+    1. link .exports file(should be read by bash and zsh)
+- ssh
+    1. link ~/.ssh/config
+    1. execute ssh-keygen
+- bash
+    1. link .bash\_profile
 - vim
     1. install or reinstall vim(vim-gtk in Debian)
     1. install vundle
     1. link .vimrc, .tern-config
     1. install vim plugin via vundle
     1. build YCM plugin
-- shells
-    1. link .functions.sh file(it then will be sourced by .exports file)
-    1. link .exports file(should be read by bash and zsh)
-- bash
-    1. link .bash\_profile
 - zsh
     1. install zsh
     1. install oh-my-zsh
@@ -59,23 +77,46 @@ Update the configuration to specify which task should be run, finally, run the e
     1. install tmux
     1. install(clone) tpm
     1. link .tmux.conf
-- miscellaneous
-    1. link .ideavimrc
-    1. terminal add monokai(customized version) profile
-    1. link ~/.ssh/config
-    1. execute ssh-keygen
-- docker
-    1. install docker-ce
-    1. copy daemon.json(to use alibaba mirror)
-    1. install docker-compose
-- k8s
-    1. install kubectl
-    1. install minikube
 
-### TODO
+#### miscellaneous
+- .ideavimrc
+
+#### gui
+- [albert](https://github.com/albertlauncher/albert)
+- gnome-terminal 
+  1. add monokai(customized version) profile
+
+#### cmd-tools
+- xclip
+- autojump
+- ag
+- powerline
+- [hub](https://github.com/github/hub)
+
+### candidates list
+- goldendict goldendict-wordnet
+
+- chrome-gnome-shell
+- wine
+- sogou-pinyin
+- netease-music
+
 - [httpie](https://github.com/jakubroztocil/httpie)
 - [http-prompt](https://github.com/eliangcs/http-prompt)
+
 - mycli
 - pgcli
 - sdkman
 - gradle
+
+### gnome extensions
+Sadly, I have to install gnome extensions manually for the time being.
+- [dash-to-panel](https://extensions.gnome.org/extension/1160/dash-to-panel/)
+- [system-monitor](https://github.com/paradoxxxzero/gnome-shell-system-monitor-applet)
+- [arc-menu](https://extensions.gnome.org/extension/1228/arc-menu/)
+- [Panel OSD](https://extensions.gnome.org/extension/708/panel-osd/)
+- [open-weather](https://extensions.gnome.org/extension/750/openweather/)
+- [topicons](https://extensions.gnome.org/extension/1031/topicons/)
+- [refresh wifi connections](https://extensions.gnome.org/extension/905/refresh-wifi-connections/)
+
+#### known issues

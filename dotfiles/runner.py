@@ -1,5 +1,6 @@
 import os
 import subprocess
+
 from .color import Color
 from .utils import colorful_print
 
@@ -9,26 +10,47 @@ class Runner:
         self._config = config
         self._path = os.path.dirname(config_path)
 
-    def run(self):
-        tasks = self._config['tasks']
-        total_task = len(tasks)
-        succeeded = 0
-        failed = 0
+        if 'name' not in self._config:
+            self._config['name'] = 'ALL'
 
-        for task in tasks:
-            task_name = task['name']
-            colorful_print('start to exec task(' + task_name + '):', Color.BLUE)
+    def run(self, name=None):
+        if name is None:
+            name = self._config['name']
+
+        tasks = {}
+        self.flatten(self._config, tasks)
+        task = tasks[name]
+
+        self.run_task(task)
+
+    # dfs
+    def flatten(self, task, res):
+        res[task['name']] = task
+
+        if 'tasks' not in task:
+            return
+
+        tasks = task['tasks']
+        for t in tasks:
+            self.flatten(t, res)
+
+    def run_task(self, task):
+        name = task['name']
+        colorful_print('start to exec task(' + name + '):', Color.BLUE)
+
+        if 'tasks' not in task:
+            cmd = task['cmd']
             res = subprocess.run(
-                task['cmd'],
+                cmd,
                 shell=True,
                 cwd=self._path
             )
+
             if res.returncode:
-                colorful_print('some error occurred when execute task(' + task_name + ')', Color.RED)
-                failed += 1
+                colorful_print('some error occurred when execute task(' + name + ')', Color.RED)
             else:
-                colorful_print('task(' + task_name + ') was executed successfully', Color.GREEN)
-                succeeded += 1
-        colorful_print('succeeded: ' + str(succeeded), Color.GREEN)
-        colorful_print('failed: ' + str(failed), Color.RED)
-        colorful_print('total: ' + str(total_task), Color.BLUE)
+                colorful_print('task(' + name + ') was executed successfully', Color.GREEN)
+            return
+
+        for task in task['tasks']:
+            self.run_task(task)
