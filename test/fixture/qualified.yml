@@ -1,0 +1,7 @@
+tasks:
+  - name: parent
+    tasks:
+      - name: child1
+        cmd: ["return 0"]
+  - name: child1
+    cmd: ["return 1"]

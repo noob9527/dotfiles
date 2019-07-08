@@ -13,18 +13,18 @@ class Runner:
         if 'name' not in self._config:
             self._config['name'] = 'ALL'
 
-    def run(self, name=None):
+    def run(self, name=None) -> int:
         if name is None:
             name = self._config['name']
 
         tasks = {}
-        self.flatten(self._config, tasks)
+        self.__flatten(self._config, tasks)
         task = tasks[name]
 
-        self.run_task(task)
+        return self.__run_task(task)
 
     # dfs
-    def flatten(self, task, res):
+    def __flatten(self, task, res):
         res[task['name']] = task
 
         if 'tasks' not in task:
@@ -32,9 +32,9 @@ class Runner:
 
         tasks = task['tasks']
         for t in tasks:
-            self.flatten(t, res)
+            self.__flatten(t, res)
 
-    def run_task(self, task):
+    def __run_task(self, task) -> int:
         name = task['name']
         colorful_print('start to exec task(' + name + '):', Color.BLUE)
 
@@ -50,7 +50,8 @@ class Runner:
                 colorful_print('some error occurred when execute task(' + name + ')', Color.RED)
             else:
                 colorful_print('task(' + name + ') was executed successfully', Color.GREEN)
-            return
+
+            return res.returncode
 
         for task in task['tasks']:
-            self.run_task(task)
+            self.__run_task(task)

@@ -1,7 +1,6 @@
 import logging
 import os
 import sys
-
 from argparse import ArgumentParser
 
 from .runner import Runner
@@ -13,7 +12,8 @@ cwd = os.path.realpath(sys.argv[0])
 default_conf = os.path.abspath(os.path.join(cwd, '../..', 'config', 'config.yml'))
 
 
-def add_options(parser):
+def get_options():
+    parser = ArgumentParser()
     parser.add_argument('-c', '--config',
                         dest='config_file',
                         default=default_conf,
@@ -25,13 +25,11 @@ def add_options(parser):
     parser.add_argument("-v", "--verbose",
                         help="increase output verbosity",
                         action="store_true")
+    return parser.parse_args()
 
 
 def main():
-    parser = ArgumentParser()
-    add_options(parser)
-    options = parser.parse_args()
-
+    options = get_options()
     logger.debug('option: %s', options)
 
     if options.verbose:
