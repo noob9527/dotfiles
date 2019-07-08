@@ -23,22 +23,22 @@ install_pip3() {
     local target='python3-pip'
     if has_installed ${target}; then
         colorful::default "$target has already been installed"
-        return 0
-    fi
-    colorful::primary "I am trying to install $target..."
-    if has_cmd 'apt-get'; then
-        package_manager_install ${target} 'apt-get'
-        return $?
     else
-        err "I have not known how to install $target yet, you have to install it manually!"
-        return 1
+        colorful::primary "I am trying to install $target..."
+        if has_cmd 'apt-get'; then
+            package_manager_install ${target} 'apt-get'
+            return $?
+        else
+            err "I have not known how to install $target yet, you have to install it manually!"
+            return 1
+        fi
     fi
 
     upgrade_pip3
 }
 
 upgrade_pip3() {
-    if ! confirm "$(colorful::primary "Are you goint to upgrade pip3(experimental)?")"; then
+    if ! confirm "$(colorful::primary "Are you going to upgrade pip3(experimental)?")"; then
         colorful::default "configure has been cancelled"
         return 0
     fi
@@ -47,7 +47,7 @@ upgrade_pip3() {
 }
 
 config() {
-    if ! confirm "$(colorful::primary "Are you goint to configure pip to use aliyun mirror?")"; then
+    if ! confirm "$(colorful::primary "Are you going to configure pip to use aliyun mirror?")"; then
         colorful::default "configure has been cancelled"
         return 0
     fi

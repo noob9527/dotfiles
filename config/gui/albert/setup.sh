@@ -45,6 +45,7 @@ config() {
 
     cp -i -r "$source_dir/org.albert.extension.websearch" "$target_dir/org.albert.extension.websearch"
     ln -s -i "$source_dir/albert.conf" "$target_dir/albert.conf"
+    ln -s -i "$dir/albertignore" "$HOME/.albertignore"
 }
 
 main() {

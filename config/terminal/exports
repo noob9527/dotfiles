@@ -18,6 +18,9 @@ export NVM_DIR="$HOME/.nvm"
 
 # pipenv
 export PIPENV_VENV_IN_PROJECT=true
+# for the time being, pipenv lock runs too slow
+export PIPENV_SKIP_LOCK=true
+export PIPENV_PYPI_MIRROR='https://mirrors.aliyun.com/pypi/simple'
 
 # android sdk
 #export ANDROID_HOME=~/Application/Android/sdk

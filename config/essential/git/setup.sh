@@ -29,7 +29,7 @@ config() {
 }
 
 config_user_info() {
-    if ! confirm "$(colorful::primary "Are you goint to configure git user info now?")"; then
+    if ! confirm "$(colorful::primary "Are you going to configure git user info now?")"; then
         colorful::default "configure has been cancelled"
         return 0
     fi
