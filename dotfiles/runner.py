@@ -1,57 +1,77 @@
+import logging
 import os
 import subprocess
+from typing import Dict, Sequence
 
 from .color import Color
 from .utils import colorful_print
+from .utils import read_config
+
+logger = logging.getLogger(__name__)
+
+
+class Task:
+    short_name: str
+    full_name: str
+    cmd: Sequence[str] = []
+    tasks: Sequence['Task'] = []
 
 
 class Runner:
-    def __init__(self, config, config_path):
-        self._config = config
-        self._path = os.path.dirname(config_path)
+    tasks: Dict[str, Task] = {}
 
-        if 'name' not in self._config:
-            self._config['name'] = 'ALL'
+    def __init__(self, config_file):
+        self.__config_file = config_file
+        self.__config_dir = os.path.dirname(config_file)
+        self.__config = read_config(config_file)
+        logger.debug('config: %s', self.__config)
+        self.__config.setdefault('name', '')
 
-    def run(self, name=None) -> int:
-        if name is None:
-            name = self._config['name']
+        self.__flatten(self.__config, '')
+        logger.debug('tasks: %s', self.tasks)
 
-        tasks = {}
-        self.__flatten(self._config, tasks)
-        task = tasks[name]
+    def run(self, name: str = '') -> int:
+        task = self.tasks.get(name) or \
+               next((t for t in self.tasks.values() if name == t.short_name), None)
+
+        if not task:
+            raise Exception(f'Cannot find such a task: {name}')
 
         return self.__run_task(task)
 
-    # dfs
-    def __flatten(self, task, res):
-        res[task['name']] = task
-
-        if 'tasks' not in task:
-            return
-
-        tasks = task['tasks']
-        for t in tasks:
-            self.__flatten(t, res)
-
-    def __run_task(self, task) -> int:
-        name = task['name']
+    def __run_task(self, task: Task) -> int:
+        name = task.short_name
         colorful_print('start to exec task(' + name + '):', Color.BLUE)
 
-        if 'tasks' not in task:
-            cmd = task['cmd']
-            res = subprocess.run(
-                cmd,
-                shell=True,
-                cwd=self._path
-            )
-
-            if res.returncode:
-                colorful_print('some error occurred when execute task(' + name + ')', Color.RED)
-            else:
-                colorful_print('task(' + name + ') was executed successfully', Color.GREEN)
-
-            return res.returncode
-
-        for task in task['tasks']:
+        for task in task.tasks:
             self.__run_task(task)
+
+        cmd = task.cmd
+        res = subprocess.run(
+            cmd,
+            shell=True,
+            cwd=self.__config_dir
+        )
+
+        if res.returncode:
+            colorful_print('some error occurred when execute task(' + name + ')', Color.RED)
+        else:
+            colorful_print('task(' + name + ') was executed successfully', Color.GREEN)
+
+        return res.returncode
+
+    def __flatten(self, task_obj, namespace: str):
+        task = Task()
+        task.short_name = task_obj['name']
+        task.full_name = namespace + task_obj['name']
+        task.cmd = task_obj.get('cmd', [])
+        self.tasks[task.full_name] = task
+
+        sub_task_obj = task_obj.get('tasks', [])
+        if not sub_task_obj:
+            return task
+
+        next_ns = task.full_name + '.' if task.full_name else ''
+        task.tasks = [self.__flatten(t, next_ns) for t in sub_task_obj]
+
+        return task

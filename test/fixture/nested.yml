@@ -2,6 +2,6 @@ tasks:
   - name: parent
     tasks:
       - name: child1
-        cmd: ["return 0"]
-      - name: child2
         cmd: ["return 1"]
+      - name: child2
+        cmd: ["return 2"]

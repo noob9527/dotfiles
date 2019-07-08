@@ -1,0 +1,122 @@
+tasks:
+  - name: essential
+    tasks:
+      - name: remap-caps
+        cmd: ["./essential/setup.sh config_keyboard"]
+      - name: git
+        cmd: ["./essential/git/setup.sh"]
+      - name: curl
+        cmd: ["./essential/setup.sh curl"]
+      - name: net-tools
+        cmd: ["./essential/setup.sh net-tools"]
+      - name: build-essential
+        cmd: ["./essential/setup.sh build-essential"]
+      - name: make
+        cmd: ["./essential/setup.sh make"]
+      - name: cmake
+        cmd: ["./essential/setup.sh cmake"]
+
+  - name: proxy
+    tasks:
+      - name: shadowsocks
+        cmd: ["./proxy/shadowsocks/setup.sh"]
+      - name: proxychains
+        tasks:
+          - name: proxychains-install
+            cmd: ["./proxy/proxychains/setup.sh install"]
+          - name: proxychains-fix
+            cmd: ["./proxy/proxychains/setup.sh fix"]
+          - name: proxychains-config
+            cmd: ["./proxy/proxychains/setup.sh config"]
+      - name: proxy-snap
+        cmd: ["./proxy/setup.sh proxy_snap"]
+
+  - name: programming
+    tasks:
+      - name: python
+        tasks:
+          - name: pip2
+            cmd: ["./programming/python/setup.sh install_pip2"]
+          - name: pip3
+            cmd: ["./programming/python/setup.sh install_pip3"]
+          - name: pip-config
+            cmd: ["./programming/python/setup.sh config"]
+      - name: node
+        cmd: ["./programming/node/setup.sh"]
+      - name: java
+        cmd: ["./programming/java/setup.sh"]
+
+  - name: cmd-tools
+    tasks:
+      - name: xclip
+        cmd: ["./cmd-tools/setup.sh xclip"]
+      - name: autojump
+        cmd: ["./cmd-tools/setup.sh autojump"]
+      - name: ag
+        cmd: ["./cmd-tools/setup.sh ag"]
+      - name: powerline
+        cmd: ["./cmd-tools/setup.sh powerline"]
+      - name: hub
+        cmd: ["./cmd-tools/setup.sh hub"]
+
+  - name: terminal
+    tasks:
+      - name: ssh
+        cmd: ["./terminal/setup.sh ssh"]
+      - name: ssh-key
+        cmd: ["./terminal/setup.sh ssh-key"]
+      - name: env
+        cmd: ["./terminal/setup.sh env"]
+      - name: shell-functions
+        cmd: ["./terminal/setup.sh shell-functions"]
+      - name: bash
+        cmd: ["./terminal/setup.sh bash"]
+      - name: zsh
+        cmd: ["./terminal/zsh/setup.sh"]
+      - name: vim
+        cmd: ["./terminal/vim/setup.sh"]
+      - name: tmux
+        cmd: ["./terminal/tmux/setup.sh"]
+
+  - name: container
+    tasks:
+    - name: docker
+      cmd: ["./container/docker/setup.sh"]
+    - name: virtual-box
+      cmd: ["./container/k8s/setup.sh install_virtualbox"]
+    - name: k8s
+      cmd: ["./container/k8s/setup.sh install_kubectl && ./k8s/setup.sh install_minikube"]
+
+  - name: gui
+    tasks:
+    - name: albert
+      tasks:
+        - name: albert-install
+          cmd: ["./gui/albert/setup.sh install"]
+        - name: albert-autostart
+          cmd: ["./gui/albert/setup.sh autostart"]
+        - name: albert-config
+          cmd: ["./gui/albert/setup.sh config"]
+    - name: gnome-terminal
+      cmd: ["./gui/gnome-terminal/setup.sh"]
+    - name: gnome-tweaks
+      cmd: ["./gui/gnome-tweaks/setup.sh"]
+    - name: goldendict
+      tasks:
+        - name: goldendict-install
+          cmd: ["./gui/goldendict/setup.sh install"]
+        - name: goldendict-config
+          cmd: ["./gui/goldendict/setup.sh config"]
+    - name: wine
+      cmd: ["echo todo"]
+    - name: sogou-pinyin
+      cmd: ["echo todo"]
+    - name: netease-music
+      cmd: ["echo todo"]
+    - name: postman
+      cmd: ["echo todo"]
+
+  - name: miscellaneous
+    tasks:
+    - name: ideavim
+      cmd: ["./miscellaneous/setup.sh"]

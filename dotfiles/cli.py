@@ -4,7 +4,6 @@ import sys
 from argparse import ArgumentParser
 
 from .runner import Runner
-from .utils import read_config
 
 logger = logging.getLogger(__name__)
 
@@ -35,9 +34,5 @@ def main():
     if options.verbose:
         logging.basicConfig(level=logging.DEBUG)
 
-    # config
-    config = read_config(options.config_file)
-    logger.debug('config: %s', config)
-
-    runner = Runner(config, options.config_file)
+    runner = Runner(options.config_file)
     runner.run(options.name)
