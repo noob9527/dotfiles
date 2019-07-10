@@ -45,6 +45,10 @@ tasks:
         cmd: ["./programming/node/setup.sh"]
       - name: java
         cmd: ["./programming/java/setup.sh"]
+      - name: rust
+        tasks:
+          - name: install
+            cmd: ["./programming/rust/setup.sh install"]
 
   - name: cmd-tools
     tasks:

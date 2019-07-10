@@ -15,6 +15,7 @@ main() {
         "$HOME/.ideavimrc"
         "$HOME/.vimrc"
         "$HOME/.zshrc"
+        "$HOME/.profile"
         "$HOME/.bash_profile"
         "$HOME/.functions.sh"
     )

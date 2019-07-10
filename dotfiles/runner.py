@@ -35,7 +35,8 @@ class Runner:
                next((t for t in self.tasks.values() if name == t.short_name), None)
 
         if not task:
-            raise Exception(f'Cannot find such a task: {name}')
+            available = {*self.tasks.keys()}
+            raise Exception(f'Cannot find such a task: {name}, available: {available}')
 
         return self.__run_task(task)
 

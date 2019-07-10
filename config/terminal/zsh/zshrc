@@ -100,9 +100,3 @@ if hash xdg-open 2>/dev/null; then
     alias open="xdg-open &> /dev/null"
 fi
 
-# environment variables
-for file in ~/.{exports,exports_local}; do
-    [ -r "$file" ] && source "$file"
-done
-unset file
-

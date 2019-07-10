@@ -31,7 +31,8 @@ config_ssh-key() {
 config_env() {
     local target='env'
     colorful::primary "I am trying to configure $target..."
-    ln -s -i "$dir/exports" "$HOME/.exports" \
+    ln -s -i "$dir/profile" "$HOME/.profile" \
+        && ln -s -i "$dir/exports" "$HOME/.exports" \
         && colorful::success ".exports have been set up"
 }
 

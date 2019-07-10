@@ -18,8 +18,8 @@ install_ohmyzsh() {
         return 0
     fi
     colorful::primary "I am trying to install $target..."
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-	return 0
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    return 0
 }
 
 install_zsh_autosuggestions() {
@@ -31,15 +31,15 @@ install_zsh_autosuggestions() {
         return 0
     fi
     colorful::primary "I am trying to install $target..."
-        git clone https://github.com/zsh-users/zsh-autosuggestions $target_dir
+    git clone https://github.com/zsh-users/zsh-autosuggestions $target_dir
     return 0
 }
 
 config() {
     colorful::primary "I am trying to configure zsh..."
 
-    ln -s -i "$dir/zshrc" "$HOME/.zshrc" && \
-        colorful::success ".zshrc have been set up"
+    ln -s -i "$dir/zshrc" "$HOME/.zshrc" \
+        && colorful::success ".zshrc have been set up"
 
     local zsh=$(which zsh)
 
