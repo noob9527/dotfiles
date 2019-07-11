@@ -42,6 +42,8 @@ Update the configuration to specify which task should be run, finally, run the e
   1. install nvm
   1. install node via nvm
   1. install common global package
+- go
+- rust
 
 #### container
 - docker
@@ -83,6 +85,7 @@ Update the configuration to specify which task should be run, finally, run the e
 
 #### gui
 - [albert](https://github.com/albertlauncher/albert)
+- [zeal](https://zealdocs.org/download.html#linux)
 - gnome-terminal 
   1. add monokai(customized version) profile
 
@@ -94,20 +97,13 @@ Update the configuration to specify which task should be run, finally, run the e
 - [hub](https://github.com/github/hub)
 
 ### candidates list
-- goldendict goldendict-wordnet
-
 - chrome-gnome-shell
 - wine
 - sogou-pinyin
 - netease-music
 
-- [httpie](https://github.com/jakubroztocil/httpie)
-- [http-prompt](https://github.com/eliangcs/http-prompt)
-
-- mycli
-- pgcli
 - sdkman
-- gradle
+- gradle(apt 4.4)
 
 ### gnome extensions
 Sadly, I have to install gnome extensions manually for the time being.

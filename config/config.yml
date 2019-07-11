@@ -45,6 +45,10 @@ tasks:
         cmd: ["./programming/node/setup.sh"]
       - name: java
         cmd: ["./programming/java/setup.sh"]
+      - name: go
+        tasks:
+          - name: install
+            cmd: ["./programming/go/setup.sh install"]
       - name: rust
         tasks:
           - name: install
@@ -95,12 +99,18 @@ tasks:
     tasks:
     - name: albert
       tasks:
-        - name: albert-install
+        - name: install
           cmd: ["./gui/albert/setup.sh install"]
-        - name: albert-autostart
+        - name: autostart
           cmd: ["./gui/albert/setup.sh autostart"]
-        - name: albert-config
+        - name: config
           cmd: ["./gui/albert/setup.sh config"]
+    - name: zeal
+      tasks:
+        - name: install
+          cmd: ["./gui/zeal/setup.sh install"]
+        - name: config
+          cmd: ["./gui/zeal/setup.sh config"]
     - name: gnome-terminal
       cmd: ["./gui/gnome-terminal/setup.sh"]
     - name: gnome-tweaks

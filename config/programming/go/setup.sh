@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 
 install() {
-    local target='rust'
-    if ! confirm_install "$target" 'curl'; then
+    local target='go'
+    if ! confirm_install "$target" 'snap'; then
         colorful::default "Installation has been cancelled"
         return 0
     fi
 
-    # plz manually choose the option which do not change path env variable
-    curl https://sh.rustup.rs -sSf | sh
+    sudo snap install go --classic
 }
 
 main() {
