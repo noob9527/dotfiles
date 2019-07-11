@@ -1,0 +1,29 @@
+# More examples.
+#
+# (Vimium supports search completion Wikipedia, as
+# above, and for these.)
+#
+
+gg https://www.google.com/search?q=%s Google
+gcn https://www.google.com/search?q=%s&lr=lang_zh-CN Google 中文
+
+yt https://www.youtube.com/results?search_query=%s Youtube
+gh https://github.com/search?utf8=✓&q=%s Github
+so http://stackoverflow.com/search?q=%s StackOverflow
+
+mdn https://developer.mozilla.org/zh-CN/search?q=%s&w=3&qs=plugin Mozilla 开发者网络
+man http://wangchujiang.com/linux-command/list.html#!kw=%s Linux command manual
+ama https://www.amazon.com/s/?field-keywords=%s Amazon
+wiki https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia
+
+bing https://www.bing.com/dict/search?q=%s Bing
+cam https://dictionary.cambridge.org/search/english/direct/?source=gadgets&q=%s Cambridge Dictionary
+
+npm https://www.npmjs.com/search?q=%s Npm
+mvn http://mvnrepository.com/search?q=%s&ref=opensearch MvnRepository
+dh https://hub.docker.com/search?q=%s&type=image Dock Hub
+
+taobao http://s.taobao.com/search?q=%s Taobao
+tmall http://list.tmall.com/search_product.htm?q=%s&type=p&from=..pc_1_opensearch Tmall
+jd http://search.jd.com/Search?keyword=%s&enc=utf-8 京东
+

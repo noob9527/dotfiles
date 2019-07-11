@@ -44,22 +44,25 @@ class Runner:
         name = task.short_name
         colorful_print('start to exec task(' + name + '):', Color.BLUE)
 
-        for task in task.tasks:
-            self.__run_task(task)
+        if not task.tasks:
+            cmd = task.cmd
+            res = subprocess.run(
+                cmd,
+                shell=True,
+                cwd=self.__config_dir
+            )
 
-        cmd = task.cmd
-        res = subprocess.run(
-            cmd,
-            shell=True,
-            cwd=self.__config_dir
-        )
+            if res.returncode:
+                colorful_print('some error occurred when execute task(' + name + ')', Color.RED)
+            else:
+                colorful_print('task(' + name + ') was executed successfully', Color.GREEN)
 
-        if res.returncode:
-            colorful_print('some error occurred when execute task(' + name + ')', Color.RED)
+            return res.returncode
         else:
-            colorful_print('task(' + name + ') was executed successfully', Color.GREEN)
-
-        return res.returncode
+            for t in task.tasks:
+                res = self.__run_task(t)
+                if res:
+                    return res
 
     def __flatten(self, task_obj, namespace: str):
         task = Task()

@@ -2,121 +2,135 @@ tasks:
   - name: essential
     tasks:
       - name: remap-caps
-        cmd: ["./essential/setup.sh config_keyboard"]
+        cmd: ["echo './essential/setup.sh config_keyboard'"]
       - name: git
-        cmd: ["./essential/git/setup.sh"]
+        cmd: ["echo './essential/git/setup.sh'"]
       - name: curl
-        cmd: ["./essential/setup.sh curl"]
+        cmd: ["echo './essential/setup.sh curl'"]
       - name: net-tools
-        cmd: ["./essential/setup.sh net-tools"]
+        cmd: ["echo './essential/setup.sh net-tools'"]
       - name: build-essential
-        cmd: ["./essential/setup.sh build-essential"]
+        cmd: ["echo './essential/setup.sh build-essential'"]
       - name: make
-        cmd: ["./essential/setup.sh make"]
+        cmd: ["echo './essential/setup.sh make'"]
       - name: cmake
-        cmd: ["./essential/setup.sh cmake"]
+        cmd: ["echo './essential/setup.sh cmake'"]
 
   - name: proxy
     tasks:
       - name: shadowsocks
-        cmd: ["./proxy/shadowsocks/setup.sh"]
+        cmd: ["echo './proxy/shadowsocks/setup.sh'"]
       - name: proxychains
         tasks:
           - name: proxychains-install
-            cmd: ["./proxy/proxychains/setup.sh install"]
+            cmd: ["echo './proxy/proxychains/setup.sh install'"]
           - name: proxychains-fix
-            cmd: ["./proxy/proxychains/setup.sh fix"]
+            cmd: ["echo './proxy/proxychains/setup.sh fix'"]
           - name: proxychains-config
-            cmd: ["./proxy/proxychains/setup.sh config"]
+            cmd: ["echo './proxy/proxychains/setup.sh config'"]
       - name: proxy-snap
-        cmd: ["./proxy/setup.sh proxy_snap"]
+        cmd: ["echo './proxy/setup.sh proxy_snap'"]
 
   - name: programming
     tasks:
       - name: python
         tasks:
           - name: pip2
-            cmd: ["./programming/python/setup.sh install_pip2"]
+            cmd: ["echo './programming/python/setup.sh install_pip2'"]
           - name: pip3
-            cmd: ["./programming/python/setup.sh install_pip3"]
+            cmd: ["echo './programming/python/setup.sh install_pip3'"]
           - name: pip-config
-            cmd: ["./programming/python/setup.sh config"]
+            cmd: ["echo './programming/python/setup.sh config'"]
       - name: node
-        cmd: ["./programming/node/setup.sh"]
+        cmd: ["echo './programming/node/setup.sh'"]
       - name: java
-        cmd: ["./programming/java/setup.sh"]
+        cmd: ["echo './programming/java/setup.sh'"]
+      - name: go
+        tasks:
+          - name: install
+            cmd: ["echo './programming/go/setup.sh install'"]
+      - name: rust
+        tasks:
+          - name: install
+            cmd: ["echo './programming/rust/setup.sh install'"]
 
   - name: cmd-tools
     tasks:
       - name: xclip
-        cmd: ["./cmd-tools/setup.sh xclip"]
+        cmd: ["echo './cmd-tools/setup.sh xclip'"]
       - name: autojump
-        cmd: ["./cmd-tools/setup.sh autojump"]
+        cmd: ["echo './cmd-tools/setup.sh autojump'"]
       - name: ag
-        cmd: ["./cmd-tools/setup.sh ag"]
+        cmd: ["echo './cmd-tools/setup.sh ag'"]
       - name: powerline
-        cmd: ["./cmd-tools/setup.sh powerline"]
+        cmd: ["echo './cmd-tools/setup.sh powerline'"]
       - name: hub
-        cmd: ["./cmd-tools/setup.sh hub"]
+        cmd: ["echo './cmd-tools/setup.sh hub'"]
 
   - name: terminal
     tasks:
       - name: ssh
-        cmd: ["./terminal/setup.sh ssh"]
+        cmd: ["echo './terminal/setup.sh ssh'"]
       - name: ssh-key
-        cmd: ["./terminal/setup.sh ssh-key"]
+        cmd: ["echo './terminal/setup.sh ssh-key'"]
       - name: env
-        cmd: ["./terminal/setup.sh env"]
+        cmd: ["echo './terminal/setup.sh env'"]
       - name: shell-functions
-        cmd: ["./terminal/setup.sh shell-functions"]
+        cmd: ["echo './terminal/setup.sh shell-functions'"]
       - name: bash
-        cmd: ["./terminal/setup.sh bash"]
+        cmd: ["echo './terminal/setup.sh bash'"]
       - name: zsh
-        cmd: ["./terminal/zsh/setup.sh"]
+        cmd: ["echo './terminal/zsh/setup.sh'"]
       - name: vim
-        cmd: ["./terminal/vim/setup.sh"]
+        cmd: ["echo './terminal/vim/setup.sh'"]
       - name: tmux
-        cmd: ["./terminal/tmux/setup.sh"]
+        cmd: ["echo './terminal/tmux/setup.sh'"]
 
   - name: container
     tasks:
     - name: docker
-      cmd: ["./container/docker/setup.sh"]
+      cmd: ["echo './container/docker/setup.sh'"]
     - name: virtual-box
-      cmd: ["./container/k8s/setup.sh install_virtualbox"]
+      cmd: ["echo './container/k8s/setup.sh install_virtualbox'"]
     - name: k8s
-      cmd: ["./container/k8s/setup.sh install_kubectl && ./k8s/setup.sh install_minikube"]
+      cmd: ["echo './container/k8s/setup.sh install_kubectl && ./k8s/setup.sh install_minikube'"]
 
   - name: gui
     tasks:
     - name: albert
       tasks:
-        - name: albert-install
-          cmd: ["./gui/albert/setup.sh install"]
-        - name: albert-autostart
-          cmd: ["./gui/albert/setup.sh autostart"]
-        - name: albert-config
-          cmd: ["./gui/albert/setup.sh config"]
+        - name: install
+          cmd: ["echo './gui/albert/setup.sh install'"]
+        - name: autostart
+          cmd: ["echo './gui/albert/setup.sh autostart'"]
+        - name: config
+          cmd: ["echo './gui/albert/setup.sh config'"]
+    - name: zeal
+      tasks:
+        - name: install
+          cmd: ["echo './gui/zeal/setup.sh install'"]
+        - name: config
+          cmd: ["echo './gui/zeal/setup.sh config'"]
     - name: gnome-terminal
-      cmd: ["./gui/gnome-terminal/setup.sh"]
+      cmd: ["echo './gui/gnome-terminal/setup.sh'"]
     - name: gnome-tweaks
-      cmd: ["./gui/gnome-tweaks/setup.sh"]
+      cmd: ["echo './gui/gnome-tweaks/setup.sh'"]
     - name: goldendict
       tasks:
         - name: goldendict-install
-          cmd: ["./gui/goldendict/setup.sh install"]
+          cmd: ["echo './gui/goldendict/setup.sh install'"]
         - name: goldendict-config
-          cmd: ["./gui/goldendict/setup.sh config"]
+          cmd: ["echo './gui/goldendict/setup.sh config'"]
     - name: wine
-      cmd: ["echo todo"]
+      cmd: ["echo 'echo todo'"]
     - name: sogou-pinyin
-      cmd: ["echo todo"]
+      cmd: ["echo 'echo todo'"]
     - name: netease-music
-      cmd: ["echo todo"]
+      cmd: ["echo 'echo todo'"]
     - name: postman
-      cmd: ["echo todo"]
+      cmd: ["echo 'echo todo'"]
 
   - name: miscellaneous
     tasks:
     - name: ideavim
-      cmd: ["./miscellaneous/setup.sh"]
+      cmd: ["echo './miscellaneous/setup.sh'"]

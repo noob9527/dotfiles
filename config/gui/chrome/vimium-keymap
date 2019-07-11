@@ -1,0 +1,61 @@
+#  Enter commands to remap your keys. Available commands:
+#  map j scrollDown
+#  unmap j
+#  unmapAll
+#  " this is a comment
+#  # this is also a comment
+
+# Insert your preferred key mappings here.
+
+# navigate
+# unmap <c-e>
+# unmap <c-y>
+unmap d
+map <c-e> scrollPageDown
+unmap u
+map <c-y> scrollPageUp
+
+# reload the page
+unmap r
+
+# Focus the first text input on the page
+unmap gi
+map I focusInput
+
+# link
+unmap f
+unmap F
+map m LinkHints.activateModeToOpenInNewForegroundTab
+
+# vomnibar
+unmap o
+unmap O
+map <c-p> Vomnibar.activateInNewTab
+unmap b
+unmap B
+# Vomnibar.activateTabSelection
+
+# find
+
+# navigating history
+unmap H
+unmap L
+map u goBack
+map <c-r> goForward
+
+# tab
+unmap J
+unmap gT
+map <c-h> previousTab
+
+unmap K
+unmap gt
+map <c-l> nextTab
+
+unmap ^
+map <c-o> visitPreviousTab
+
+map 0 firstTab
+map $ lastTab
+
+map ZZ removeTab

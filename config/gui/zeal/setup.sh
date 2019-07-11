@@ -27,7 +27,13 @@ config() {
     local target_dir="$HOME/.config/Zeal"
     mkdir -p $target_dir
 
-    ln -s -i "$dir/Zeal.conf" "$target_dir/Zeal.conf"
+    local source_file="$dir/Zeal.conf"
+    local target_file="$target_dir/Zeal.conf"
+    cp -i "$source_file" "$target_file"
+
+    local docset="$HOME/.local/share/Zeal/Zeal/docsets"
+    mkdir -p $docset
+    sed -i "s|path=|path=$docset|g" "$target_file"
 }
 
 main() {
