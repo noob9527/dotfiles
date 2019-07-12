@@ -53,6 +53,8 @@ tasks:
         tasks:
           - name: install
             cmd: ["./programming/rust/setup.sh install"]
+          - name: config
+            cmd: ["./programming/rust/setup.sh config"]
 
   - name: cmd-tools
     tasks:

@@ -64,7 +64,6 @@ install_docker_compose() {
 config_daemon_json() {
     colorful::primary "I am trying to overwrite daemon.json(to use alibaba mirror)..."
     sudo ln -s -i "$dir/daemon.json" "/etc/docker/daemon.json"
-    colorful::success "daemon.json have been copied"
 }
 
 main() {

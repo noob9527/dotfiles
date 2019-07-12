@@ -18,6 +18,7 @@ main() {
         "$HOME/.profile"
         "$HOME/.bash_profile"
         "$HOME/.functions.sh"
+        "$HOME/.cargo/config"
     )
     restore_symbol_links ${arr[@]}
 }

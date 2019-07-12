@@ -11,6 +11,11 @@ install() {
     curl https://sh.rustup.rs -sSf | sh
 }
 
+config() {
+    colorful::primary "I am trying to config cargo mirror..."
+    sudo ln -s -i "$dir/config" "$HOME/.cargo/config"
+}
+
 main() {
     local dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     local parent_dir=$(dirname ${dir})
