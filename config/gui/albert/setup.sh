@@ -43,9 +43,12 @@ config() {
     local target_dir="$HOME/.config/albert"
     mkdir -p $target_dir
 
-    cp -i -r "$source_dir/org.albert.extension.websearch" "$target_dir/org.albert.extension.websearch"
-    ln -s -i "$source_dir/albert.conf" "$target_dir/albert.conf"
     ln -s -i "$dir/albertignore" "$HOME/.albertignore"
+
+    cp -i "$source_dir/albert.conf" "$target_dir/albert.conf"
+    sed -i "s|paths=|paths=$HOME|g" "$target_dir/albert.conf"
+
+    cp -i -r "$source_dir/org.albert.extension.websearch" "$target_dir/org.albert.extension.websearch"
 }
 
 main() {

@@ -19,6 +19,7 @@ main() {
         "$HOME/.bash_profile"
         "$HOME/.functions.sh"
         "$HOME/.cargo/config"
+        "$HOME/.albertignore"
     )
     restore_symbol_links ${arr[@]}
 }
