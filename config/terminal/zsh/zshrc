@@ -100,3 +100,5 @@ if hash xdg-open 2>/dev/null; then
     alias open="xdg-open &> /dev/null"
 fi
 
+# source custom shell functions
+source "$HOME/.functions.sh"
