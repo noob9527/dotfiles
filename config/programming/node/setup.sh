@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-install_nvm() {
+nvm() {
     local target='nvm'
     if [[ -d "$HOME/.$target" ]]; then
         colorful::default "$target has already been installed"
@@ -9,7 +9,7 @@ install_nvm() {
     colorful::primary "I am trying to install $target..."
     confirm_install "$target" 'curl' \
         && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh \
-	    | NVM_DIR="$HOME/.nvm" bash
+        | NVM_DIR="$HOME/.nvm" bash
     if [[ $? -eq 0 ]]; then
         export NVM_DIR="$HOME/.nvm"
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -17,7 +17,7 @@ install_nvm() {
     fi
 }
 
-install() {
+node() {
     local target='node'
     if has_cmd ${target}; then
         colorful::default "$target has already been installed"
@@ -33,24 +33,24 @@ install() {
     return 0
 }
 
-install_global_package() {
+node_global_package() {
     local pkgs=(
-        'js-beautify' \
+    'js-beautify' \
         'eslint' \
         'babel-eslint' \
-		'eslint-plugin-flowtype' \
-		'eslint-plugin-react' \
-		'eslint-plugin-jsx-a11y' \
-		'eslint-plugin-import' \
-		'eslint-config-airbnb-base' \
-		'eslint-config-airbnb' \
+        'eslint-plugin-flowtype' \
+        'eslint-plugin-react' \
+        'eslint-plugin-jsx-a11y' \
+        'eslint-plugin-import' \
+        'eslint-config-airbnb-base' \
+        'eslint-config-airbnb' \
         'typescript' \
         'typescript-formatter' \
         'tslint' \
-    )
+        )
     # TODO find elegant way
     to_multi_line() {
-      (IFS=$'\n'; echo "$*")
+        (IFS=$'\n'; echo "$*")
     }
     # a tricky way to add LF
     # https://stackoverflow.com/questions/4296108/how-do-i-add-a-line-break-for-read-command
@@ -72,7 +72,8 @@ main() {
     source "$config_root/colorful.sh"
     source "$config_root/terminal/functions.sh"
 
-    install_nvm && install && install_global_package
+    local fn="$1"
+    ${fn}
 }
 
 main $@

@@ -42,7 +42,13 @@ tasks:
           - name: pip-config
             cmd: ["./programming/python/setup.sh config"]
       - name: node
-        cmd: ["./programming/node/setup.sh"]
+        tasks:
+          - name: nvm
+            cmd: ["./programming/node/setup.sh nvm"]
+          - name: node
+            cmd: ["./programming/node/setup.sh node"]
+          - name: node_global_package
+            cmd: ["./programming/node/setup.sh node_global_package"]
       - name: java
         cmd: ["./programming/java/setup.sh"]
       - name: go
