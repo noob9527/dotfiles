@@ -9,6 +9,16 @@ config_ideavim() {
         && colorful::success ".ideavimrc have been set up"
 }
 
+load_keybinding() {
+    local target="$dir/keybindings.dconf"
+    dconf load /org/gnome/desktop/wm/keybindings/ < $target
+}
+
+dump_keybinding() {
+    local target="$dir/keybindings.dconf"
+    dconf dump /org/gnome/desktop/wm/keybindings/ > $target
+}
+
 main() {
     local dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     local parent_dir=$(dirname ${dir})
@@ -17,14 +27,8 @@ main() {
     source "$parent_dir/colorful.sh"
     source "$parent_dir/terminal/functions.sh"
 
-    for fn in config_ideavim; do
-        ${fn}
-        if [[ $? -eq 0 ]]; then
-            colorful::success "$fn executed successful"
-        else
-            colorful::error "$fn executed failure"
-        fi
-    done
+    local fn="$1"
+    ${fn}
 }
 
 main "$@"

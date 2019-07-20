@@ -151,4 +151,8 @@ tasks:
   - name: miscellaneous
     tasks:
     - name: ideavim
-      cmd: ["./miscellaneous/setup.sh"]
+      cmd: ["./miscellaneous/setup.sh config_ideavim"]
+    - name: gnome-load-keybinding
+      cmd: ["./miscellaneous/setup.sh load_keybinding"]
+    - name: gnome-dump-keybinding
+      cmd: ["./miscellaneous/setup.sh dump_keybinding"]
