@@ -82,7 +82,17 @@ tasks:
       - name: bash
         cmd: ["./terminal/setup.sh bash"]
       - name: zsh
-        cmd: ["./terminal/zsh/setup.sh"]
+        tasks:
+          - name: zsh-install
+            cmd: ["./terminal/zsh/setup.sh install"]
+          - name: zsh-ohmyzsh
+            cmd: ["./terminal/zsh/setup.sh install_ohmyzsh"]
+          - name: zsh-autosuggestions
+            cmd: ["./terminal/zsh/setup.sh install_zsh_autosugguestions"]
+          - name: zsh-you-should-use
+            cmd: ["./terminal/zsh/setup.sh install_you_should_use"]
+          - name: zsh-config
+            cmd: ["./terminal/zsh/setup.sh config"]
       - name: vim
         cmd: ["./terminal/vim/setup.sh"]
       - name: tmux
@@ -107,22 +117,22 @@ tasks:
           cmd: ["./gui/albert/setup.sh autostart"]
         - name: config
           cmd: ["./gui/albert/setup.sh config"]
-    - name: zeal
-      tasks:
-        - name: install
-          cmd: ["./gui/zeal/setup.sh install"]
-        - name: config
-          cmd: ["./gui/zeal/setup.sh config"]
+    # - name: zeal
+    #   tasks:
+    #     - name: install
+    #       cmd: ["./gui/zeal/setup.sh install"]
+    #     - name: config
+    #       cmd: ["./gui/zeal/setup.sh config"]
     - name: gnome-terminal
       cmd: ["./gui/gnome-terminal/setup.sh"]
     - name: gnome-tweaks
       cmd: ["./gui/gnome-tweaks/setup.sh"]
-    - name: goldendict
-      tasks:
-        - name: goldendict-install
-          cmd: ["./gui/goldendict/setup.sh install"]
-        - name: goldendict-config
-          cmd: ["./gui/goldendict/setup.sh config"]
+    # - name: goldendict
+    #   tasks:
+    #     - name: goldendict-install
+    #       cmd: ["./gui/goldendict/setup.sh install"]
+    #     - name: goldendict-config
+    #       cmd: ["./gui/goldendict/setup.sh config"]
     - name: wine
       cmd: ["echo todo"]
     - name: sogou-pinyin
