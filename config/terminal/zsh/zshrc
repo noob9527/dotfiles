@@ -54,6 +54,7 @@ DISABLE_AUTO_UPDATE="true"
 plugins=(
     git
     gitfast
+    nvm
     tmux
     autojump
     kubectl
@@ -103,3 +104,4 @@ fi
 
 # source custom shell functions
 source "$HOME/.functions.sh"
+
