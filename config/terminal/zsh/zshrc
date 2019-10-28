@@ -54,12 +54,13 @@ DISABLE_AUTO_UPDATE="true"
 plugins=(
     git
     gitfast
-    nvm
     tmux
     autojump
     kubectl
     zsh-autosuggestions
     you-should-use
+    # this slow down zshell a little bit
+    # nvm
 )
 
 # tmux plugin
