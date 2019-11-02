@@ -14,12 +14,12 @@ install() {
         return 1
     fi
 
-    if ! confirm_install 'default-jdk' 'apt-get'; then
+    if ! confirm_install 'openjdk-8-jdk' 'apt-get'; then
         err "Installation has been cancelled"
         return 0
     fi
 
-    sudo apt-get install 'default-jdk' 'openjdk-8-source'
+    sudo apt-get install 'openjdk-8-jdk' 'openjdk-8-source'
     return $?
 }
 

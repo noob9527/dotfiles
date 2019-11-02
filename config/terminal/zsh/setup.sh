@@ -62,6 +62,7 @@ config() {
     fi
 
     # Actually change the default shell to zsh
+    # this take effects after rebooting
     if ! chsh -s "$zsh"; then
         err "chsh command unsuccessful. Change your default shell manually."
     else

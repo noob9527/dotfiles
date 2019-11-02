@@ -60,7 +60,7 @@ plugins=(
     zsh-autosuggestions
     you-should-use
     # this slow down zshell a little bit
-    # nvm
+    nvm
 )
 
 # tmux plugin
