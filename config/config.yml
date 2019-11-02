@@ -6,15 +6,15 @@ tasks:
       - name: git
         cmd: ["./essential/git/setup.sh"]
       - name: curl
-        cmd: ["./essential/setup.sh curl"]
+        cmd: ["./essential/setup.sh install_curl"]
       - name: net-tools
-        cmd: ["./essential/setup.sh net-tools"]
+        cmd: ["./essential/setup.sh install_net-tools"]
       - name: build-essential
-        cmd: ["./essential/setup.sh build-essential"]
+        cmd: ["./essential/setup.sh install_build-essential"]
       - name: make
-        cmd: ["./essential/setup.sh make"]
+        cmd: ["./essential/setup.sh install_make"]
       - name: cmake
-        cmd: ["./essential/setup.sh cmake"]
+        cmd: ["./essential/setup.sh install_cmake"]
 
   - name: proxy
     tasks:
@@ -44,11 +44,11 @@ tasks:
       - name: node
         tasks:
           - name: nvm
-            cmd: ["./programming/node/setup.sh nvm"]
+            cmd: ["./programming/node/setup.sh install_nvm"]
           - name: node
-            cmd: ["./programming/node/setup.sh node"]
+            cmd: ["./programming/node/setup.sh install_node"]
           - name: node_global_package
-            cmd: ["./programming/node/setup.sh node_global_package"]
+            cmd: ["./programming/node/setup.sh install_node_global_package"]
       - name: java
         cmd: ["./programming/java/setup.sh"]
       - name: go
@@ -94,7 +94,7 @@ tasks:
           - name: zsh-ohmyzsh
             cmd: ["./terminal/zsh/setup.sh install_ohmyzsh"]
           - name: zsh-autosuggestions
-            cmd: ["./terminal/zsh/setup.sh install_zsh_autosugguestions"]
+            cmd: ["./terminal/zsh/setup.sh install_zsh_autosuggestions"]
           - name: zsh-you-should-use
             cmd: ["./terminal/zsh/setup.sh install_you_should_use"]
           - name: zsh-config

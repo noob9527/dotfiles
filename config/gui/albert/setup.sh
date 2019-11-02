@@ -35,6 +35,7 @@ autostart() {
     fi
 
     colorful::primary "I am trying to autostart albert..."
+    mkdir -p "$HOME/.config/autostart"
     cp -i "$dir/autostart-albert.desktop" "$HOME/.config/autostart/albert.desktop"
 }
 

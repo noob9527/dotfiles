@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-nvm() {
+install_nvm() {
     local target='nvm'
     if [[ -d "$HOME/.$target" ]]; then
         colorful::default "$target has already been installed"
@@ -17,7 +17,7 @@ nvm() {
     fi
 }
 
-node() {
+install_node() {
     local target='node'
     if has_cmd ${target}; then
         colorful::default "$target has already been installed"
@@ -33,7 +33,7 @@ node() {
     return 0
 }
 
-node_global_package() {
+install_node_global_package() {
     local pkgs=(
     'js-beautify' \
         'eslint' \

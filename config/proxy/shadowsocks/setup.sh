@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 install_ss_qt5_legacy() {
-    local target='ss-qt5'
+    local target='shadowsocks-qt5'
 
     if has_installed ${target}; then
         colorful::default "$target has already been installed"
@@ -81,6 +81,7 @@ autostart() {
     fi
 
     colorful::primary "I am trying to autostart ss-qt5..."
+    mkdir -p "$HOME/.config/autostart/"
     cp -i "$dir/autostart-shadowsocks-qt5.desktop" "$HOME/.config/autostart/shadowsocks-qt5.desktop"
 }
 
@@ -93,9 +94,20 @@ main() {
     source "$config_root/colorful.sh"
     source "$config_root/terminal/functions.sh"
 
-    install_shadowsocks_client \
-        && add_desktop_entry \
-        && autostart
+    # as the new version doesn't show icon correctly
+    # we use the legacy version for the time being
+    install_ss_qt5_legacy
+    # sudo gedit /etc/apt/sources.list.d/hzwhuang-ubuntu-ss-qt5-bionic.list
+    # 
+    # 修改後內容為：
+    # 
+    # deb http://ppa.launchpad.net/hzwhuang/ss-qt5/ubuntu xenial main
+    # # deb-src http://ppa.launchpad.net/hzwhuang/ss-qt5/ubuntu xenial main
+
+
+    # install_shadowsocks_client \
+    #     && add_desktop_entry \
+    #     && autostart
 }
 
 main $@

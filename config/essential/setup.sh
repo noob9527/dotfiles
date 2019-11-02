@@ -6,7 +6,7 @@
 # cmake
 # net-tools
 
-curl() {
+install_curl() {
     local target='curl'
     if has_cmd ${target}; then
         colorful::default "$target has already been installed"
@@ -16,7 +16,7 @@ curl() {
     package_manager_install ${target}
 }
 
-build-essential() {
+install_build-essential() {
     local target='build-essential'
     if has_installed ${target}; then
         colorful::default "$target has already been installed"
@@ -32,7 +32,7 @@ build-essential() {
     fi
 }
 
-net-tools() {
+install_net-tools() {
     local target='net-tools'
     if has_installed ${target}; then
         colorful::default "$target has already been installed"
@@ -48,7 +48,7 @@ net-tools() {
     fi
 }
 
-make() {
+install_make() {
     local target='make'
     if has_cmd ${target}; then
         colorful::default "$target has already been installed"
@@ -58,7 +58,7 @@ make() {
     package_manager_install ${target}
 }
 
-cmake() {
+install_cmake() {
     local target='cmake'
     if has_cmd ${target}; then
         colorful::default "$target has already been installed"
@@ -68,7 +68,7 @@ cmake() {
     package_manager_install ${target}
 }
 
-rtun() {
+install_rtun() {
     local target='reattach-to-user-namespace'
     if has_cmd 'brew'; then
         package_manager_install ${target} 'brew'

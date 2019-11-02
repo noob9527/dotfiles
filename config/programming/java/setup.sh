@@ -16,7 +16,7 @@ install() {
 
     if ! confirm_install 'default-jdk' 'apt-get'; then
         err "Installation has been cancelled"
-        return 2
+        return 0
     fi
 
     sudo apt-get install 'default-jdk' 'openjdk-8-source'
@@ -33,7 +33,7 @@ config_java_home() {
 
     if ! confirm "$(colorful::primary "Are you going to configure $target?")"; then
         err "configure has been cancelled"
-        return 1
+        return 0
     fi
 
     if ! has_cmd 'jrunscript'; then
