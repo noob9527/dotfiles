@@ -1,6 +1,19 @@
 #!/usr/bin/env bash
 
 # ideavim
+# gnome keybindings
+# inotify
+
+config_inotify() {
+    local target="/etc/sysctl.d/10-inotify.conf"
+    if [[ -f "$target"  ]]; then
+        echo 'exist'
+        return 0
+    fi
+    sudo cp -i "$dir/inotify.conf" $target \
+        && sudo sysctl -p --system \
+        && colorful::success "$target have been set up"
+}
 
 config_ideavim() {
     local target='ideavim'
