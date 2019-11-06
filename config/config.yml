@@ -154,6 +154,8 @@ tasks:
       cmd: ["./miscellaneous/setup.sh config_ideavim"]
     - name: inotify
       cmd: ["./miscellaneous/setup.sh config_inotify"]
+    - name: vm_max_map_count
+      cmd: ["./miscellaneous/setup.sh config_vm_max_map_count"]
     - name: gnome-load-keybinding
       cmd: ["./miscellaneous/setup.sh load_keybinding"]
     - name: gnome-dump-keybinding

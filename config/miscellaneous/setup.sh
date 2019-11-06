@@ -3,14 +3,26 @@
 # ideavim
 # gnome keybindings
 # inotify
+# vm.max_map_count
 
 config_inotify() {
     local target="/etc/sysctl.d/10-inotify.conf"
     if [[ -f "$target"  ]]; then
-        echo 'exist'
+        echo "$target exists"
         return 0
     fi
     sudo cp -i "$dir/inotify.conf" $target \
+        && sudo sysctl -p --system \
+        && colorful::success "$target have been set up"
+}
+
+config_vm_max_map_count() {
+    local target="/etc/sysctl.d/10-vm_max_map_count.conf"
+    if [[ -f "$target"  ]]; then
+        echo "$target exists"
+        return 0
+    fi
+    sudo cp -i "$dir/vm_max_map_count.conf" $target \
         && sudo sysctl -p --system \
         && colorful::success "$target have been set up"
 }
