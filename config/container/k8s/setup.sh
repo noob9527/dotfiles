@@ -14,15 +14,23 @@ install_kubectl() {
         return 1
     fi
 
-    if ! confirm_install "$target" 'apt-get'; then
+    if  confirm_install "$target" 'snap'; then
+        sudo snap install kubectl --classic
+    else
         err "Installation has been cancelled"
         return 0
     fi
 
-    # install kubectl in linux
-    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-    echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
-    sudo apt update && sudo apt install -y kubectl
+    # if  confirm_install "$target" 'apt-get'; then
+    #     # install kubectl in linux
+    #     curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+    #     echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+    #     sudo apt update && sudo apt install -y kubectl
+    # else
+    #     err "Installation has been cancelled"
+    #     return 0
+    # fi
+
 }
 
 install_virtualbox() {
