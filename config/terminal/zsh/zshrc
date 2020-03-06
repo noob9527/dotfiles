@@ -99,7 +99,10 @@ alias term="gnome-terminal"
 alias glist_remote='for ref in $(git for-each-ref --sort=-committerdate --format="%(refname)" refs/heads/ refs/remotes ); do git log -n1 $ref --pretty=format:"%Cgreen%cr%Creset %C(yellow)%d%Creset %C(bold blue)<%an>%Creset%n" | cat ; done | awk '"'! a["'$0'"]++'"
 
 # alternative to OSX open command
-if hash xdg-open 2>/dev/null; then
+# if hash xdg-open 2>/dev/null; then
+# somehow hash doesn't work as i expected here
+# ref: https://stackoverflow.com/questions/592620/how-can-i-check-if-a-program-exists-from-a-bash-script
+if [[ "$(command -v xdg-open)" ]]; then
     alias open="xdg-open &> /dev/null"
 fi
 
