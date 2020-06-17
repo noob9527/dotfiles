@@ -23,6 +23,8 @@ export PIPENV_PYPI_MIRROR='https://mirrors.aliyun.com/pypi/simple'
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # android sdk
-#export ANDROID_HOME=~/Application/Android/sdk
-#export PATH=${PATH}:$ANDROID_HOME/tools
-#export PATH=${PATH}:$ANDROID_HOME/platform-tools
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
