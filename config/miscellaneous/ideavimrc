@@ -1,8 +1,26 @@
 source ~/.vimrc
 
-map <C-h> <C-w>h
-" map <C-j> <C-w>j
-" map <C-k> <C-w>k
-map <C-l> <C-w>l
-
+" https://github.com/JetBrains/ideavim/wiki/Emulated-plugins
+set NERDTree
 set surround
+" set easymotion
+
+" use m as easymotion prefix
+" map m <Plug>(easymotion-prefix)
+" map mj <Plug>(easymotion-j)
+" map mk <Plug>(easymotion-k)
+
+" set highlightedyank
+" let g:highlightedyank_highlight_duration = "-1"
+" let g:highlightedyank_highlight_color = "rgba(160, 160, 160, 155)"
+
+" noremap <C-j> <C-w>j
+" noremap <C-k> <C-w>k
+noremap <C-h> <C-w>h
+noremap <C-l> <C-w>l
+
+nnoremap <leader><leader>erc :edit ~/.ideavimrc<CR>
+nnoremap <leader><leader>lrc :source ~/.ideavimrc<CR>
+
+nnoremap <C-w> :close<CR>
+vnoremap <C-w> :close<CR>
