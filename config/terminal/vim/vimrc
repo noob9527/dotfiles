@@ -133,11 +133,18 @@ inoremap <C-f>t <Esc>:CtrlSFToggle<CR>
 
 Plugin 'easymotion/vim-easymotion'
 let g:EasyMotion_smartcase = 1
+" easymotion
+" use m as easymotion prefix
 map m <Plug>(easymotion-prefix)
 " Move to char
-nmap ms <Plug>(easymotion-bd-f)
+nmap s <Plug>(easymotion-bd-f)
 " Move to line
-" map mm <Plug>(easymotion-bd-jk)
+" map <leader>j <Plug>(easymotion-j)
+" map <leader>k <Plug>(easymotion-k)
+" " consider using "wihtin line" mode? <Plug>(easymotion-bl)
+" map <leader>b <Plug>(easymotion-b)
+" map <leader>e <Plug>(easymotion-e)
+" map <leader>w <Plug>(easymotion-w)
 
 Plugin 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
@@ -471,28 +478,40 @@ endfunction
 command! ZoomToggle call s:ZoomToggle()
 nnoremap <silent> <A-z> :ZoomToggle<CR>
 
-" generate doc comment template
-map <leader><BS> :call GenerateDOCComment()<cr>
-function! GenerateDOCComment()
-    let l    = line('.')
-    let i    = indent(l)
-    let pre  = repeat(' ',i)
-    let text = getline(l)
-    let params   = matchstr(text,'([^)]*)')
-    let paramPat = '\([$a-zA-Z_0-9]\+\)[, ]*\(.*\)'
-    echomsg params
-    let vars = []
-    let m    = ' '
-    let ml = matchlist(params,paramPat)
-    while ml!=[]
-        let [_,var;rest]= ml
-        let vars += [pre.' * @param '.var]
-        let ml = matchlist(rest,paramPat,0)
-    endwhile
-    let comment = [pre.'/**',pre.' * '] + vars + [pre.' */']
-    call append(l-1,comment)
-    call cursor(l+1,i+3)
-endfunction
+" edit/reload vimrc
+" https://superuser.com/questions/286985/reload-vimrc-in-vim-without-restart
+nnoremap <leader><leader>erc :edit $MYVIMRC<CR>
+nnoremap <leader><leader>lrc :source $MYVIMRC<CR>
+" auto reload when save
+" if has ('autocmd') " Remain compatible with earlier versions
+"  augroup vimrc     " Source vim configuration upon save
+"     autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
+"     autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
+"   augroup END
+" endif " has autocmd
+
+" " generate doc comment template
+" map <leader><BS> :call GenerateDOCComment()<cr>
+" function! GenerateDOCComment()
+"     let l    = line('.')
+"     let i    = indent(l)
+"     let pre  = repeat(' ',i)
+"     let text = getline(l)
+"     let params   = matchstr(text,'([^)]*)')
+"     let paramPat = '\([$a-zA-Z_0-9]\+\)[, ]*\(.*\)'
+"     echomsg params
+"     let vars = []
+"     let m    = ' '
+"     let ml = matchlist(params,paramPat)
+"     while ml!=[]
+"         let [_,var;rest]= ml
+"         let vars += [pre.' * @param '.var]
+"         let ml = matchlist(rest,paramPat,0)
+"     endwhile
+"     let comment = [pre.'/**',pre.' * '] + vars + [pre.' */']
+"     call append(l-1,comment)
+"     call cursor(l+1,i+3)
+" endfunction
 
 " bats(test utils for shellscript) syntax highlight
 autocmd BufRead,BufNewFile *.bats        set filetype=sh
